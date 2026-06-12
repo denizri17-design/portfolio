@@ -7,6 +7,7 @@ import { asset } from "@/lib/asset";
 import { t } from "@/lib/i18n/dict";
 import { cn } from "@/lib/utils";
 import { ProjectIcon } from "./ProjectIcon";
+import { ProjectCarousel } from "./ProjectCarousel";
 import type { Project } from "@/data/projects";
 
 function describeLive(url: string): { label: string; isStore: boolean } {
@@ -46,7 +47,9 @@ export function ProjectCard({
 
   const spotlight = useMotionTemplate`radial-gradient(420px circle at ${mouseX}px ${mouseY}px, rgba(255,255,255,0.07), transparent 60%)`;
 
-  const hasImage = Boolean(project.image);
+  const images = project.images ?? (project.image ? [project.image] : []);
+  const hasImage = images.length > 0;
+  const isCarousel = images.length > 1;
   const isPhone = project.imageFit === "contain";
 
   return (
@@ -76,7 +79,18 @@ export function ProjectCard({
         )}
       >
         {hasImage ? (
-          isPhone ? (
+          isCarousel ? (
+            <>
+              <div className="absolute inset-0 bg-grid opacity-40" />
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.18),transparent_60%)]" />
+              <ProjectCarousel
+                images={images}
+                alt={project.name}
+                variant={isPhone ? "phone" : "cover"}
+                cardIndex={index}
+              />
+            </>
+          ) : isPhone ? (
             <div className="absolute inset-0 grid place-items-center">
               <div className="absolute inset-0 bg-grid opacity-40" />
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.18),transparent_60%)]" />

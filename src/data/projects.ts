@@ -12,8 +12,13 @@ export type Project = {
   stack: string[];
   links: { live?: string; repo?: string };
   isPrivate: boolean;
-  /** Optional real screenshot in /public/projects/{slug}.webp */
+  /** Optional single real screenshot in /public/projects/{slug}.webp */
   image?: string;
+  /**
+   * Optional multiple screenshots — renders a swipeable carousel with
+   * pagination dots. Takes precedence over `image` if both are set.
+   */
+  images?: string[];
   /** Crop behaviour for the cover image. Phone screenshots need "contain". */
   imageFit?: "cover" | "contain";
   /** Tailwind gradient + icon used as fallback / framing when image is absent. */
@@ -178,7 +183,10 @@ export const projects: Project[] = [
     stack: ["Laravel", "PHP", "Blade", "MySQL", "Tailwind"],
     links: { repo: "https://github.com/denizri17-design/public-adjuster" },
     isPrivate: true,
-    image: "/projects/public-adjuster.webp",
+    images: [
+      "/projects/public-adjuster.webp",
+      "/projects/public-adjuster-light.webp",
+    ],
     imageFit: "cover",
     cover: {
       gradient: "from-amber-500/30 via-orange-500/15 to-indigo-500/30",
@@ -333,11 +341,12 @@ export const projects: Project[] = [
     name: "Skallix Mobile",
     tagline: "Companion mobile app for the Skallix CRM.",
     description:
-      "Earlier React Native + Expo companion app for the Skallix CRM, focused on lightweight on-the-go workflows for managers and reps.",
+      "React Native + Expo companion client for the Skallix CRM. Market-aware navigation (San Francisco / multi-region), dashboard with conversion funnel KPIs, lead-source breakdown, sales-rep performance, and full clients / leads / jobs / appointments / estimates / documents / finance / reports modules.",
     bullets: [
-      "Expo + React Native",
-      "JWT auth against the Skallix CRM API",
-      "Lightweight, optimized for low-bandwidth field use",
+      "Expo + React Native, JWT auth against the Skallix CRM API",
+      "Market switcher (multi-region) in the side drawer",
+      "Period-scoped dashboard (Today / Week / Month / Quarter / Year)",
+      "Lead → Opportunity → Production → Collection conversion funnel",
     ],
     category: ["mobile"],
     year: "2025",
@@ -345,7 +354,10 @@ export const projects: Project[] = [
     stack: ["Expo", "React Native", "JavaScript"],
     links: { repo: "https://github.com/denizri17-design/skallix_mobile" },
     isPrivate: true,
-    image: "/projects/skallix-mobile.webp",
+    images: [
+      "/projects/skallix-mobile-dashboard.webp",
+      "/projects/skallix-mobile-menu.webp",
+    ],
     imageFit: "contain",
     cover: {
       gradient: "from-indigo-500/30 via-blue-500/15 to-cyan-500/30",
