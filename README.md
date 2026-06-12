@@ -1,8 +1,27 @@
 # Ri Abba — Portfolio
 
+[![Deploy to GitHub Pages](https://github.com/denizri17-design/portfolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/denizri17-design/portfolio/actions/workflows/deploy.yml)
+
+🌐 **Live:** [denizri17-design.github.io/portfolio/](https://denizri17-design.github.io/portfolio/)
+
 Personal portfolio for **Ri Abba**, fullstack developer. Showcases 10 production
 products: AI SaaS, multi-tenant CRMs, native iOS/Android apps, marketing sites,
 and indie games built with React Native + Unity.
+
+## Featured projects (linked on the site)
+
+| Project | Type | Live |
+|---|---|---|
+| **NextStep** — AI Career Copilot | AI SaaS | [github.com/denizri17-design/nextstep](https://github.com/denizri17-design/nextstep) |
+| **Skallix CRM** — Multi-tenant roofing CRM | CRM / SaaS | [skallix.com](https://skallix.com) |
+| **Skallix Doorknocking** — Field-rep mobile app | Mobile (iOS+Android) | [Repo](https://github.com/denizri17-design/skallix-doorknocking-mobile) |
+| **DLG Platform** — Laravel CRM | CRM | [Repo](https://github.com/denizri17-design/dlgplatform) |
+| **Public Adjuster SaaS** | SaaS / CRM | [Repo](https://github.com/denizri17-design/public-adjuster) |
+| **M&V Auto Body** — Site + Staff CRM | Web + CRM | [mivbodyshop.com](https://www.mivbodyshop.com) |
+| **Abbari Studio** — Indie game studio site | Marketing | [abbari-website.vercel.app](https://abbari-website.vercel.app) |
+| **Linko** — One-line path puzzle | Game (iOS) | [App Store](https://apps.apple.com/us/app/linko-one-line-path/id6774304399) |
+| **Bricko** — Indie mobile game | Game (iOS) | [App Store](https://apps.apple.com/app/id6768135258) |
+| **Skallix Mobile** — Companion app | Mobile | [Repo](https://github.com/denizri17-design/skallix_mobile) |
 
 > Built to a "wow" bar: dark theme, animated grid + blob backdrop, glassy
 > floating navbar, gradient typography, spotlight project cards with real
@@ -45,18 +64,35 @@ Node **20+** required (Next.js 15).
 
 ## Deploy
 
-### Vercel (recommended)
+### GitHub Pages (current)
 
-1. Push this repo to GitHub.
-2. Go to [vercel.com/new](https://vercel.com/new), import the repo.
-3. Vercel auto-detects Next.js. Click **Deploy**. No env vars needed.
-4. (Optional) Add custom domain in **Settings → Domains**, e.g.
-   `riabba.dev`. Update `metadataBase` in `src/app/layout.tsx` and
-   `EMAIL` in `src/components/Contact.tsx`.
+This repo deploys to GitHub Pages automatically on every push to `main` via
+`.github/workflows/deploy.yml`. Live at
+[denizri17-design.github.io/portfolio/](https://denizri17-design.github.io/portfolio/).
+
+How it works:
+1. The workflow installs deps with pnpm.
+2. `actions/configure-pages` computes the sub-path (`/portfolio`).
+3. We pass it to `NEXT_PUBLIC_BASE_PATH`, then run `next build` which
+   produces `out/` with `output: "export"` + `basePath`.
+4. A `.nojekyll` file is added (so GitHub Pages serves `_next/*` as-is).
+5. The `out/` dir is uploaded as a Pages artifact and deployed.
+
+First-time setup (only needed once): repo → **Settings → Pages → Build and
+deployment → Source = GitHub Actions**.
+
+### Vercel (alternative, if you want a custom domain)
+
+1. Push to GitHub, then [vercel.com/new](https://vercel.com/new) → import.
+2. In project settings, set env `NEXT_PUBLIC_BASE_PATH=""` to drop the
+   sub-path.
+3. Add your domain in **Settings → Domains**.
 
 ### Anywhere else
 
-Standard `next build` + `next start` works on any Node 20+ host.
+`pnpm build` produces a static `out/` directory. Drop it on Netlify,
+Cloudflare Pages, S3 + CloudFront, or `python3 -m http.server` for a quick
+local preview.
 
 ## License
 

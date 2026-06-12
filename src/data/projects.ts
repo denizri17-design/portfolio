@@ -282,7 +282,10 @@ export const projects: Project[] = [
       "AdMob",
       "i18next",
     ],
-    links: { repo: "https://github.com/denizri17-design/linko" },
+    links: {
+      live: "https://apps.apple.com/us/app/linko-one-line-path/id6774304399",
+      repo: "https://github.com/denizri17-design/linko",
+    },
     isPrivate: true,
     image: "/projects/linko.webp",
     imageFit: "contain",
@@ -308,7 +311,10 @@ export const projects: Project[] = [
     year: "2026",
     status: "shipped",
     stack: ["React Native", "Expo", "TypeScript", "Unity", "C#", "Python"],
-    links: { repo: "https://github.com/denizri17-design/bricko-game" },
+    links: {
+      live: "https://apps.apple.com/app/id6768135258",
+      repo: "https://github.com/denizri17-design/bricko-game",
+    },
     isPrivate: true,
     image: "/projects/bricko-game.webp",
     imageFit: "contain",

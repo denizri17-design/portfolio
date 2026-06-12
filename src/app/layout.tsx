@@ -2,6 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "/portfolio";
+const siteUrl = "https://denizri17-design.github.io/portfolio";
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -26,13 +29,13 @@ export const metadata: Metadata = {
     template: "%s · Ri Abba",
   },
   description:
-    "Fullstack developer building AI-powered SaaS, multi-tenant CRMs, native mobile apps and beautifully animated web products. Selected work from 2024–2026.",
-  metadataBase: new URL("https://riabba.dev"),
+    "Fullstack developer building AI-powered SaaS, multi-tenant CRMs, native iOS/Android apps and indie games (React Native + Unity). Selected work from 2024–2026.",
+  metadataBase: new URL(siteUrl),
   openGraph: {
     title: "Ri Abba — Fullstack Developer",
     description:
-      "AI SaaS · Multi-tenant CRMs · Native iOS/Android · Beautiful marketing sites.",
-    url: "https://riabba.dev",
+      "AI SaaS · Multi-tenant CRMs · Native iOS/Android · Indie games (React Native + Unity).",
+    url: siteUrl,
     siteName: "Ri Abba",
     type: "website",
   },
@@ -40,10 +43,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ri Abba — Fullstack Developer",
     description:
-      "AI SaaS · Multi-tenant CRMs · Native iOS/Android · Beautiful marketing sites.",
+      "AI SaaS · Multi-tenant CRMs · Native iOS/Android · Indie games (React Native + Unity).",
   },
   icons: {
-    icon: "/favicon.svg",
+    icon: `${basePath}/favicon.svg`,
   },
 };
 
