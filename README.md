@@ -59,7 +59,7 @@ Node **20+** required (Next.js 15).
   `"cover"`.
 - Brand colors and font tokens → `@theme` block at the top of
   `src/app/globals.css`
-- Replace `hello@riabba.dev` in `src/components/Contact.tsx` with your real
+- Replace `info@abbaristudio.com` in `src/components/Contact.tsx` with your real
   email (used both for the `mailto:` and the "copy email" button).
 
 ## Deploy

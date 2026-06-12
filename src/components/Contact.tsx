@@ -6,7 +6,7 @@ import { ArrowUpRight, Copy, Check, Github, Mail } from "lucide-react";
 import { t } from "@/lib/i18n/dict";
 import { SectionHeader } from "./SectionHeader";
 
-const EMAIL = "hello@riabba.dev";
+const EMAIL = "info@abbaristudio.com";
 
 export function Contact() {
   const [copied, setCopied] = useState(false);
