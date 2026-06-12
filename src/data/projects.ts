@@ -68,7 +68,10 @@ export const projects: Project[] = [
     ],
     links: { repo: "https://github.com/denizri17-design/nextstep" },
     isPrivate: true,
-    image: "/projects/nextstep.webp",
+    images: [
+      "/projects/nextstep-tracker.webp",
+      "/projects/nextstep-resumes.webp",
+    ],
     imageFit: "cover",
     cover: {
       gradient: "from-violet-500/30 via-fuchsia-500/15 to-cyan-500/30",

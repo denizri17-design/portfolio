@@ -1,7 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { Apple, ArrowUpRight, ExternalLink, Github, Lock, Play } from "lucide-react";
 import { asset } from "@/lib/asset";
 import { t } from "@/lib/i18n/dict";
@@ -27,11 +34,35 @@ export function ProjectCard({
 }) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  const prefersReducedMotion = useReducedMotion();
+
+  // Normalized cursor position in card space ([-1, 1])
+  const nx = useMotionValue(0);
+  const ny = useMotionValue(0);
+  const tiltX = useSpring(useTransform(ny, [-1, 1], [6, -6]), {
+    stiffness: 220,
+    damping: 22,
+  });
+  const tiltY = useSpring(useTransform(nx, [-1, 1], [-6, 6]), {
+    stiffness: 220,
+    damping: 22,
+  });
 
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    mouseX.set(e.clientX - rect.left);
-    mouseY.set(e.clientY - rect.top);
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    mouseX.set(x);
+    mouseY.set(y);
+    if (!prefersReducedMotion) {
+      nx.set((x / rect.width) * 2 - 1);
+      ny.set((y / rect.height) * 2 - 1);
+    }
+  };
+
+  const onLeave = () => {
+    nx.set(0);
+    ny.set(0);
   };
 
   const spotlight = useMotionTemplate`radial-gradient(420px circle at ${mouseX}px ${mouseY}px, rgba(255,255,255,0.07), transparent 60%)`;
@@ -47,8 +78,14 @@ export function ProjectCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: Math.min(index * 0.05, 0.4) }}
       onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      style={{
+        rotateX: tiltX,
+        rotateY: tiltY,
+        transformPerspective: 1100,
+      }}
       className={cn(
-        "group relative isolate flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-[var(--color-surface)]/60 backdrop-blur-md transition-all duration-500 hover:border-white/20 hover:-translate-y-1",
+        "group relative isolate flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-[var(--color-surface)]/60 backdrop-blur-md transition-[border-color,box-shadow] duration-500 hover:border-white/20 hover:shadow-[0_30px_60px_-20px_rgba(124,92,255,0.35)]",
         featured && "lg:col-span-2",
       )}
     >

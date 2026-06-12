@@ -6,11 +6,13 @@ import { Stack } from "@/components/Stack";
 import { Work } from "@/components/Work";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
+import { ScrollProgress } from "@/components/ScrollProgress";
 
 export default function HomePage() {
   return (
     <main className="relative min-h-screen">
       <AnimatedBackground />
+      <ScrollProgress />
       <Navbar />
       <Hero />
       <Work />

@@ -11,6 +11,9 @@ export function AnimatedBackground() {
       <div className="absolute inset-0 bg-[var(--color-bg)]" />
       <div className="absolute inset-0 bg-grid opacity-70" />
 
+      {/* Slow aurora conic — adds a subtle drifting color field */}
+      <div className="aurora absolute -inset-[20%] opacity-50" />
+
       <motion.div
         className="blob absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full"
         style={{

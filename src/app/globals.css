@@ -150,4 +150,59 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
+  /* Drifting aurora — slow conic gradient over the page background */
+  .aurora {
+    background: conic-gradient(
+      from 0deg,
+      transparent 0%,
+      rgba(124, 92, 255, 0.18) 12%,
+      transparent 24%,
+      rgba(0, 212, 255, 0.18) 38%,
+      transparent 52%,
+      rgba(255, 94, 219, 0.14) 70%,
+      transparent 88%,
+      rgba(124, 92, 255, 0.18) 100%
+    );
+    filter: blur(90px);
+    animation: aurora-spin 38s linear infinite;
+    transform-origin: 50% 50%;
+    will-change: transform;
+  }
+  @keyframes aurora-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* Reveal a single line of text from below with a wipe mask */
+  .reveal-mask {
+    overflow: hidden;
+    display: inline-block;
+    line-height: 1.05;
+    padding-bottom: 0.08em;
+  }
+
+  /* Animated underline used on link hovers */
+  .link-underline {
+    position: relative;
+  }
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    height: 1px;
+    background: linear-gradient(90deg, #7c5cff, #00d4ff, #ff5edb);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .link-underline:hover::after { transform: scaleX(1); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .aurora, .marquee, .animate-floaty, .shine {
+      animation: none !important;
+    }
+  }
 }

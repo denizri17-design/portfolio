@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { t } from "@/lib/i18n/dict";
 import { cn } from "@/lib/utils";
+import { Magnetic } from "./Magnetic";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -63,7 +64,7 @@ export function Navbar() {
               <li key={item.href}>
                 <a
                   href={item.href}
-                  className="relative rounded-full px-3.5 py-2 text-sm text-white/70 transition hover:text-white"
+                  className="link-underline relative rounded-full px-3.5 py-2 text-sm text-white/70 transition hover:text-white"
                 >
                   {item.label}
                 </a>
@@ -72,13 +73,15 @@ export function Navbar() {
           </ul>
 
           <div className="flex items-center gap-2">
-            <a
-              href="#contact"
-              className="hidden md:inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-medium text-black transition hover:bg-white/90"
-            >
-              {t.nav.hire}
-              <span aria-hidden>→</span>
-            </a>
+            <Magnetic strength={10} className="hidden md:inline-flex">
+              <a
+                href="#contact"
+                className="group inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-medium text-black shadow-[0_10px_30px_-12px_rgba(255,255,255,0.55)] transition hover:bg-white/95"
+              >
+                {t.nav.hire}
+                <span aria-hidden className="inline-block transition-transform group-hover:translate-x-0.5">→</span>
+              </a>
+            </Magnetic>
 
             <button
               type="button"
