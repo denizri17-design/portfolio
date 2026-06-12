@@ -55,9 +55,8 @@ export function ProjectCard({
   return (
     <motion.article
       initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.6, delay: Math.min(index * 0.05, 0.4) }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: Math.min(index * 0.05, 0.4) }}
       onMouseMove={onMove}
       className={cn(
         "group relative isolate flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-[var(--color-surface)]/60 backdrop-blur-md transition-all duration-500 hover:border-white/20 hover:-translate-y-1",
