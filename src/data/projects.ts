@@ -163,9 +163,12 @@ export const projects: Project[] = [
     ],
     category: ["crm"],
     year: "2025",
-    status: "in-production",
+    status: "live",
     stack: ["Laravel", "PHP", "Blade", "TypeScript", "MySQL"],
-    links: { repo: "https://github.com/denizri17-design/dlgplatform" },
+    links: {
+      live: "https://dlgplatform.com/marketing/login.php",
+      repo: "https://github.com/denizri17-design/dlgplatform",
+    },
     isPrivate: true,
     image: "/projects/dlgplatform.webp",
     imageFit: "cover",
@@ -191,7 +194,10 @@ export const projects: Project[] = [
     year: "2025",
     status: "live",
     stack: ["Laravel", "PHP", "Blade", "MySQL", "Tailwind"],
-    links: { repo: "https://github.com/denizri17-design/public-adjuster" },
+    links: {
+      live: "https://local-adjuster.com/admin/login",
+      repo: "https://github.com/denizri17-design/public-adjuster",
+    },
     isPrivate: true,
     images: [
       "/projects/public-adjuster.webp",
