@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useLang } from "@/lib/i18n/LangProvider";
+import { t } from "@/lib/i18n/dict";
 import { SectionHeader } from "./SectionHeader";
 
 const groups = [
@@ -19,10 +19,12 @@ const groups = [
     ],
   },
   {
-    label: "Mobile",
+    label: "Mobile & Games",
     items: [
       "React Native",
       "Expo SDK 54",
+      "Unity",
+      "C#",
       "expo-router",
       "Mapbox",
       "expo-iap",
@@ -88,6 +90,8 @@ const marqueeRow = [
   "Framer Motion",
   "Expo",
   "React Native",
+  "Unity",
+  "C#",
   "FastAPI",
   "Python",
   "Node.js",
@@ -103,8 +107,6 @@ const marqueeRow = [
 ];
 
 export function Stack() {
-  const { t } = useLang();
-
   return (
     <section id="stack" className="relative scroll-mt-24 py-24 sm:py-32">
       <div className="container-page">

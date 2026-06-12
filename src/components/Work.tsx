@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useLang } from "@/lib/i18n/LangProvider";
+import { t } from "@/lib/i18n/dict";
 import { projects, type ProjectCategory } from "@/data/projects";
 import { SectionHeader } from "./SectionHeader";
 import { ProjectCard } from "./ProjectCard";
@@ -11,7 +11,6 @@ import { cn } from "@/lib/utils";
 type FilterKey = "all" | ProjectCategory;
 
 export function Work() {
-  const { t } = useLang();
   const [filter, setFilter] = useState<FilterKey>("all");
 
   const filters: { key: FilterKey; label: string }[] = [

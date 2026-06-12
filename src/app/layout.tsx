@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { LangProvider } from "@/lib/i18n/LangProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -64,9 +63,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrains.variable}`}
     >
-      <body>
-        <LangProvider>{children}</LangProvider>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

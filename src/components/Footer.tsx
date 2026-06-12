@@ -1,10 +1,9 @@
 "use client";
 
 import { ArrowUp, Github } from "lucide-react";
-import { useLang } from "@/lib/i18n/LangProvider";
+import { t } from "@/lib/i18n/dict";
 
 export function Footer() {
-  const { t } = useLang();
   const year = new Date().getFullYear();
 
   return (

@@ -3,11 +3,10 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { useLang } from "@/lib/i18n/LangProvider";
+import { t } from "@/lib/i18n/dict";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
-  const { lang, setLang, t } = useLang();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -73,33 +72,6 @@ export function Navbar() {
           </ul>
 
           <div className="flex items-center gap-2">
-            <div className="hidden sm:flex items-center rounded-full border border-white/10 p-0.5 text-[11px] font-medium uppercase tracking-wider">
-              <button
-                type="button"
-                onClick={() => setLang("en")}
-                className={cn(
-                  "rounded-full px-2.5 py-1 transition",
-                  lang === "en"
-                    ? "bg-white text-black"
-                    : "text-white/60 hover:text-white",
-                )}
-              >
-                EN
-              </button>
-              <button
-                type="button"
-                onClick={() => setLang("ru")}
-                className={cn(
-                  "rounded-full px-2.5 py-1 transition",
-                  lang === "ru"
-                    ? "bg-white text-black"
-                    : "text-white/60 hover:text-white",
-                )}
-              >
-                RU
-              </button>
-            </div>
-
             <a
               href="#contact"
               className="hidden md:inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-medium text-black transition hover:bg-white/90"
@@ -140,37 +112,6 @@ export function Navbar() {
                     </a>
                   </li>
                 ))}
-                <li className="mt-1 flex items-center justify-between rounded-xl px-3 py-2">
-                  <span className="text-xs uppercase tracking-wider text-white/40">
-                    Lang
-                  </span>
-                  <div className="flex items-center rounded-full border border-white/10 p-0.5 text-[11px] font-medium uppercase">
-                    <button
-                      type="button"
-                      onClick={() => setLang("en")}
-                      className={cn(
-                        "rounded-full px-2.5 py-1 transition",
-                        lang === "en"
-                          ? "bg-white text-black"
-                          : "text-white/60 hover:text-white",
-                      )}
-                    >
-                      EN
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setLang("ru")}
-                      className={cn(
-                        "rounded-full px-2.5 py-1 transition",
-                        lang === "ru"
-                          ? "bg-white text-black"
-                          : "text-white/60 hover:text-white",
-                      )}
-                    >
-                      RU
-                    </button>
-                  </div>
-                </li>
                 <li>
                   <a
                     href="#contact"

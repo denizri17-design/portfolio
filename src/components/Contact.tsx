@@ -3,13 +3,12 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Copy, Check, Github, Mail } from "lucide-react";
-import { useLang } from "@/lib/i18n/LangProvider";
+import { t } from "@/lib/i18n/dict";
 import { SectionHeader } from "./SectionHeader";
 
 const EMAIL = "hello@riabba.dev";
 
 export function Contact() {
-  const { t } = useLang();
   const [copied, setCopied] = useState(false);
 
   const copy = async () => {

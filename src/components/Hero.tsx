@@ -2,11 +2,9 @@
 
 import { motion } from "framer-motion";
 import { ArrowDown, ArrowUpRight, Github, Sparkles } from "lucide-react";
-import { useLang } from "@/lib/i18n/LangProvider";
+import { t } from "@/lib/i18n/dict";
 
 export function Hero() {
-  const { t } = useLang();
-
   return (
     <section
       id="top"

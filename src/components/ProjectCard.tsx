@@ -1,16 +1,17 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import { ArrowUpRight, ExternalLink, Github, Lock } from "lucide-react";
-import { useLang } from "@/lib/i18n/LangProvider";
+import { t } from "@/lib/i18n/dict";
 import { cn } from "@/lib/utils";
 import { ProjectIcon } from "./ProjectIcon";
 import type { Project } from "@/data/projects";
 
-const statusLabel: Record<Project["status"], { en: string; ru: string }> = {
-  shipped: { en: "Shipped", ru: "Выпущено" },
-  "in-production": { en: "In production", ru: "В проде" },
-  live: { en: "Live", ru: "В работе" },
+const statusLabel: Record<Project["status"], string> = {
+  shipped: "Shipped",
+  "in-production": "In production",
+  live: "Live",
 };
 
 export function ProjectCard({
@@ -22,7 +23,6 @@ export function ProjectCard({
   index: number;
   featured?: boolean;
 }) {
-  const { lang, t } = useLang();
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -33,6 +33,9 @@ export function ProjectCard({
   };
 
   const spotlight = useMotionTemplate`radial-gradient(420px circle at ${mouseX}px ${mouseY}px, rgba(255,255,255,0.07), transparent 60%)`;
+
+  const hasImage = Boolean(project.image);
+  const isPhone = project.imageFit === "contain";
 
   return (
     <motion.article
@@ -55,67 +58,113 @@ export function ProjectCard({
       {/* Cover */}
       <div
         className={cn(
-          "relative h-44 overflow-hidden sm:h-52",
+          "relative h-56 overflow-hidden sm:h-64",
           "bg-gradient-to-br",
           project.cover.gradient,
         )}
       >
-        <div className="absolute inset-0 bg-grid opacity-50" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.18),transparent_60%)]" />
+        {hasImage ? (
+          isPhone ? (
+            <div className="absolute inset-0 grid place-items-center">
+              <div className="absolute inset-0 bg-grid opacity-40" />
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.18),transparent_60%)]" />
+              <div className="relative z-10 h-full py-4 transition-transform duration-700 group-hover:scale-[1.03]">
+                <div className="relative h-full aspect-[9/19.5] rounded-[28px] border-4 border-black/70 bg-black shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)] overflow-hidden">
+                  <Image
+                    src={project.image!}
+                    alt={`${project.name} screenshot`}
+                    fill
+                    sizes="(min-width: 1024px) 240px, 200px"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          ) : (
+            <>
+              <Image
+                src={project.image!}
+                alt={`${project.name} screenshot`}
+                fill
+                sizes="(min-width: 1024px) 600px, 100vw"
+                className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                priority={index < 2}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/0 to-black/30" />
+            </>
+          )
+        ) : (
+          <>
+            <div className="absolute inset-0 bg-grid opacity-50" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.18),transparent_60%)]" />
+            <motion.div
+              className="absolute inset-x-0 bottom-0 flex items-end justify-center pb-7"
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <div
+                className={cn(
+                  "grid h-20 w-20 place-items-center rounded-2xl bg-black/40 ring-1 backdrop-blur-md",
+                  project.cover.accent,
+                )}
+              >
+                <ProjectIcon
+                  name={project.cover.icon}
+                  size={36}
+                  className="text-white"
+                />
+              </div>
+            </motion.div>
+          </>
+        )}
 
-        <div className="absolute left-5 top-5 flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-black/40 px-2.5 py-1 text-[11px] font-medium text-white/85 backdrop-blur">
+        <div className="absolute left-5 top-5 z-20 flex flex-wrap items-center gap-2">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-black/55 px-2.5 py-1 text-[11px] font-medium text-white/90 ring-1 ring-white/10 backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-            {statusLabel[project.status][lang]}
+            {statusLabel[project.status]}
           </span>
-          <span className="inline-flex items-center rounded-full border border-white/10 bg-black/30 px-2.5 py-1 font-mono text-[11px] tracking-wider text-white/70 backdrop-blur">
+          <span className="inline-flex items-center rounded-full bg-black/55 px-2.5 py-1 font-mono text-[11px] tracking-wider text-white/80 ring-1 ring-white/10 backdrop-blur">
             {project.year}
           </span>
         </div>
 
         {project.isPrivate && (
-          <div className="absolute right-5 top-5 inline-flex items-center gap-1 rounded-full border border-white/10 bg-black/40 px-2.5 py-1 text-[11px] text-white/70 backdrop-blur">
+          <div className="absolute right-5 top-5 z-20 inline-flex items-center gap-1 rounded-full bg-black/55 px-2.5 py-1 text-[11px] text-white/80 ring-1 ring-white/10 backdrop-blur">
             <Lock size={11} />
             Private
           </div>
         )}
 
-        <motion.div
-          className={cn(
-            "absolute inset-x-0 bottom-0 flex items-end justify-center pb-7",
-          )}
-          animate={{ y: [0, -6, 0] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <div
-            className={cn(
-              "grid h-20 w-20 place-items-center rounded-2xl bg-black/40 ring-1 backdrop-blur-md",
-              project.cover.accent,
-            )}
-          >
-            <ProjectIcon
-              name={project.cover.icon}
-              size={36}
-              className="text-white"
-            />
+        {hasImage && (
+          <div className="pointer-events-none absolute bottom-4 right-4 z-20">
+            <div
+              className={cn(
+                "grid h-10 w-10 place-items-center rounded-xl bg-black/55 ring-1 backdrop-blur",
+                project.cover.accent,
+              )}
+            >
+              <ProjectIcon
+                name={project.cover.icon}
+                size={18}
+                className="text-white/90"
+              />
+            </div>
           </div>
-        </motion.div>
+        )}
       </div>
 
       <div className="relative z-10 flex flex-1 flex-col p-6 sm:p-7">
         <h3 className="font-display text-2xl font-semibold tracking-tight text-white">
           {project.name}
         </h3>
-        <p className="mt-1.5 text-sm text-white/55">
-          {project.tagline[lang]}
-        </p>
+        <p className="mt-1.5 text-sm text-white/55">{project.tagline}</p>
 
         <p className="mt-4 text-[15px] leading-relaxed text-white/75">
-          {project.description[lang]}
+          {project.description}
         </p>
 
         <ul className="mt-5 space-y-1.5 text-[13.5px] text-white/65">
-          {project.bullets[lang].slice(0, 4).map((b) => (
+          {project.bullets.slice(0, 4).map((b) => (
             <li key={b} className="flex gap-2 leading-snug">
               <span className="mt-2 inline-block h-1 w-1 flex-shrink-0 rounded-full bg-white/40" />
               <span>{b}</span>

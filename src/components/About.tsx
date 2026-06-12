@@ -2,12 +2,10 @@
 
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
-import { useLang } from "@/lib/i18n/LangProvider";
+import { t } from "@/lib/i18n/dict";
 import { SectionHeader } from "./SectionHeader";
 
 export function About() {
-  const { t } = useLang();
-
   return (
     <section id="about" className="relative scroll-mt-24 py-24 sm:py-32">
       <div className="container-page">
