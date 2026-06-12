@@ -10,7 +10,16 @@ export type Project = {
   year: string;
   status: "shipped" | "in-production" | "live";
   stack: string[];
-  links: { live?: string; repo?: string };
+  links: {
+    /** Primary live web URL (marketing/app site). */
+    live?: string;
+    /** Apple App Store listing URL. */
+    appStore?: string;
+    /** Google Play Store listing URL. */
+    googlePlay?: string;
+    /** Source repository URL. */
+    repo?: string;
+  };
   isPrivate: boolean;
   /** Optional single real screenshot in /public/projects/{slug}.webp */
   image?: string;
@@ -93,6 +102,7 @@ export const projects: Project[] = [
     ],
     links: {
       live: "https://skallix.com",
+      appStore: "https://apps.apple.com/us/app/skallix-crm/id6762063674",
       repo: "https://github.com/denizri17-design/skallix-crm",
     },
     isPrivate: true,
@@ -295,7 +305,7 @@ export const projects: Project[] = [
       "i18next",
     ],
     links: {
-      live: "https://apps.apple.com/us/app/linko-one-line-path/id6774304399",
+      appStore: "https://apps.apple.com/us/app/linko-one-line-path/id6774304399",
       repo: "https://github.com/denizri17-design/linko",
     },
     isPrivate: true,
@@ -324,7 +334,7 @@ export const projects: Project[] = [
     status: "shipped",
     stack: ["React Native", "Expo", "TypeScript", "Unity", "C#", "Python"],
     links: {
-      live: "https://apps.apple.com/app/id6768135258",
+      appStore: "https://apps.apple.com/us/app/bricko-brick-photo-art/id6768135258",
       repo: "https://github.com/denizri17-design/bricko-game",
     },
     isPrivate: true,
@@ -352,7 +362,10 @@ export const projects: Project[] = [
     year: "2025",
     status: "shipped",
     stack: ["Expo", "React Native", "JavaScript"],
-    links: { repo: "https://github.com/denizri17-design/skallix_mobile" },
+    links: {
+      appStore: "https://apps.apple.com/us/app/skallix-crm/id6762063674",
+      repo: "https://github.com/denizri17-design/skallix_mobile",
+    },
     isPrivate: true,
     images: [
       "/projects/skallix-mobile-dashboard.webp",

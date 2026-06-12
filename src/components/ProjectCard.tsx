@@ -2,24 +2,13 @@
 
 import Image from "next/image";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
-import { Apple, ArrowUpRight, ExternalLink, Github, Lock } from "lucide-react";
+import { Apple, ArrowUpRight, ExternalLink, Github, Lock, Play } from "lucide-react";
 import { asset } from "@/lib/asset";
 import { t } from "@/lib/i18n/dict";
 import { cn } from "@/lib/utils";
 import { ProjectIcon } from "./ProjectIcon";
 import { ProjectCarousel } from "./ProjectCarousel";
 import type { Project } from "@/data/projects";
-
-function describeLive(url: string): { label: string; isStore: boolean } {
-  try {
-    const host = new URL(url).hostname;
-    if (host.endsWith("apps.apple.com")) return { label: "App Store", isStore: true };
-    if (host.endsWith("play.google.com")) return { label: "Google Play", isStore: true };
-    return { label: t.work.live, isStore: false };
-  } catch {
-    return { label: t.work.live, isStore: false };
-  }
-}
 
 const statusLabel: Record<Project["status"], string> = {
   shipped: "Shipped",
@@ -214,25 +203,56 @@ export function ProjectCard({
         </div>
 
         <div className="mt-6 flex flex-wrap items-center gap-2">
-          {project.links.live &&
-            (() => {
-              const { label, isStore } = describeLive(project.links.live!);
-              return (
-                <a
-                  href={project.links.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group/btn inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-2 text-xs font-medium text-black transition hover:bg-white/90"
-                >
-                  {isStore ? <Apple size={13} /> : <ExternalLink size={13} />}
-                  {label}
-                  <ArrowUpRight
-                    size={13}
-                    className="transition-transform group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5"
-                  />
-                </a>
-              );
-            })()}
+          {project.links.live && (
+            <a
+              href={project.links.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group/btn inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-2 text-xs font-medium text-black transition hover:bg-white/90"
+            >
+              <ExternalLink size={13} />
+              {t.work.live}
+              <ArrowUpRight
+                size={13}
+                className="transition-transform group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5"
+              />
+            </a>
+          )}
+          {project.links.appStore && (
+            <a
+              href={project.links.appStore}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                "group/btn inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-xs font-medium transition",
+                project.links.live
+                  ? "border border-white/15 bg-white/[0.03] text-white/80 hover:border-white/30 hover:text-white"
+                  : "bg-white text-black hover:bg-white/90",
+              )}
+            >
+              <Apple size={13} />
+              App Store
+              <ArrowUpRight
+                size={13}
+                className="transition-transform group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5"
+              />
+            </a>
+          )}
+          {project.links.googlePlay && (
+            <a
+              href={project.links.googlePlay}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group/btn inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.03] px-3.5 py-2 text-xs font-medium text-white/80 transition hover:border-white/30 hover:text-white"
+            >
+              <Play size={13} />
+              Google Play
+              <ArrowUpRight
+                size={13}
+                className="transition-transform group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5"
+              />
+            </a>
+          )}
           {project.links.repo && (
             <a
               href={project.links.repo}
