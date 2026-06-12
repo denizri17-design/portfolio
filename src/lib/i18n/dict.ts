@@ -18,7 +18,7 @@ export const t = {
     ctaWork: "See selected work",
     ctaContact: "Get in touch",
     stats: [
-      { k: "10+", v: "Production products shipped" },
+      { k: "50+", v: "Production products shipped" },
       { k: "iOS + Android", v: "Native apps on stores" },
       { k: "React + Unity", v: "Game dev across both stacks" },
     ],
