@@ -11,6 +11,7 @@ import {
   Spline,
   Gamepad2,
   Smartphone,
+  Newspaper,
   type LucideIcon,
 } from "lucide-react";
 
@@ -25,6 +26,7 @@ const map: Record<string, LucideIcon> = {
   Spline,
   Gamepad2,
   Smartphone,
+  Newspaper,
 };
 
 export function ProjectIcon({
