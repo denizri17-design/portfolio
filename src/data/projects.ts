@@ -72,14 +72,16 @@ export const projects: Project[] = [
     },
     isPrivate: true,
     images: [
-      "/projects/nextstep-tracker.webp",
-      "/projects/nextstep-resumes.webp",
+      "/projects/nextstep-hero.webp",
+      "/projects/nextstep-interview.webp",
+      "/projects/nextstep-english.webp",
+      "/projects/nextstep-career.webp",
     ],
     imageFit: "cover",
     cover: {
-      gradient: "from-violet-500/30 via-fuchsia-500/15 to-cyan-500/30",
-      accent: "ring-violet-400/40",
-      icon: "Sparkles",
+      gradient: "from-amber-700/25 via-orange-500/15 to-stone-400/25",
+      accent: "ring-amber-500/40",
+      icon: "Newspaper",
     },
   },
   {
