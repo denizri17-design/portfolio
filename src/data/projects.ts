@@ -66,7 +66,10 @@ export const projects: Project[] = [
       "Turborepo",
       "Tailwind",
     ],
-    links: { repo: "https://github.com/denizri17-design/nextstep" },
+    links: {
+      live: "https://nextstep-today.com",
+      repo: "https://github.com/denizri17-design/nextstep",
+    },
     isPrivate: true,
     images: [
       "/projects/nextstep-tracker.webp",
