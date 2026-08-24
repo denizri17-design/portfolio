@@ -122,7 +122,7 @@ export function ProjectCard({
               <div className="relative z-10 h-full py-4 transition-transform duration-700 group-hover:scale-[1.03]">
                 <div className="relative h-full aspect-[9/19.5] rounded-[28px] border-4 border-black/70 bg-black shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)] overflow-hidden">
                   <Image
-                    src={asset(project.image!)}
+                    src={asset(images[0])}
                     alt={`${project.name} screenshot`}
                     fill
                     sizes="(min-width: 1024px) 240px, 200px"
@@ -134,7 +134,7 @@ export function ProjectCard({
           ) : (
             <>
               <Image
-                src={asset(project.image!)}
+                src={asset(images[0])}
                 alt={`${project.name} screenshot`}
                 fill
                 sizes="(min-width: 1024px) 600px, 100vw"
