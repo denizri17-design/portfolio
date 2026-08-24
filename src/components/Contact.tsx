@@ -35,17 +35,17 @@ export function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7 }}
-          className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-violet-600/20 via-fuchsia-500/10 to-cyan-500/20 p-8 sm:p-12"
+          className="relative overflow-hidden rounded-[2rem] border border-[#d4a574]/20 bg-gradient-to-br from-[#d4a574]/15 via-[#e07a5f]/8 to-[#f0d9b5]/10 p-8 sm:p-12"
         >
           <div className="absolute inset-0 bg-grid opacity-40" />
-          <div className="absolute -top-32 -right-32 h-80 w-80 rounded-full bg-violet-500/30 blur-3xl" />
-          <div className="absolute -bottom-32 -left-32 h-80 w-80 rounded-full bg-cyan-400/20 blur-3xl" />
+          <div className="absolute -top-32 -right-32 h-80 w-80 rounded-full bg-[#d4a574]/25 blur-3xl" />
+          <div className="absolute -bottom-32 -left-32 h-80 w-80 rounded-full bg-[#e07a5f]/15 blur-3xl" />
 
           <div className="relative grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
             <div>
               <a
                 href={`mailto:${EMAIL}`}
-                className="group inline-flex items-center gap-2 font-display text-3xl font-semibold tracking-tight text-white transition hover:text-white sm:text-4xl"
+                className="group inline-flex items-center gap-2 font-display text-3xl font-medium italic tracking-tight text-[#f4efe6] transition hover:text-[#f0d9b5] sm:text-4xl"
               >
                 {EMAIL}
                 <ArrowUpRight
@@ -56,7 +56,7 @@ export function Contact() {
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <a
                   href={`mailto:${EMAIL}`}
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition hover:bg-white/90"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#f4efe6] px-5 py-3 text-sm font-medium text-[#1a1410] transition hover:bg-[#fff8ee]"
                 >
                   <Mail size={15} />
                   {t.contact.emailCta}

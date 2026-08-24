@@ -10,6 +10,8 @@ import { cn } from "@/lib/utils";
 
 type FilterKey = "all" | ProjectCategory;
 
+const featuredSlugs = ["ourfit", "local-adjuster-mobile"];
+
 export function Work() {
   const [filter, setFilter] = useState<FilterKey>("all");
 
@@ -23,8 +25,19 @@ export function Work() {
   ];
 
   const visible = useMemo(() => {
-    if (filter === "all") return projects;
-    return projects.filter((p) => p.category.includes(filter));
+    const list =
+      filter === "all"
+        ? [...projects]
+        : projects.filter((p) => p.category.includes(filter));
+    if (filter !== "all") return list;
+    return list.sort((a, b) => {
+      const ai = featuredSlugs.indexOf(a.slug);
+      const bi = featuredSlugs.indexOf(b.slug);
+      if (ai === -1 && bi === -1) return 0;
+      if (ai === -1) return 1;
+      if (bi === -1) return -1;
+      return ai - bi;
+    });
   }, [filter]);
 
   return (
@@ -53,8 +66,8 @@ export function Work() {
                 className={cn(
                   "group inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-sm transition",
                   active
-                    ? "border-white bg-white text-black"
-                    : "border-white/10 bg-white/[0.02] text-white/70 hover:border-white/25 hover:text-white",
+                    ? "border-[#f4efe6] bg-[#f4efe6] text-[#1a1410]"
+                    : "border-white/10 bg-white/[0.02] text-white/70 hover:border-[#d4a574]/40 hover:text-[#f4efe6]",
                 )}
               >
                 {f.label}
@@ -87,7 +100,7 @@ export function Work() {
                 key={p.slug}
                 project={p}
                 index={i}
-                featured={p.slug === "nextstep" && filter === "all"}
+                featured={featuredSlugs.includes(p.slug) && filter === "all"}
               />
             ))}
           </motion.div>

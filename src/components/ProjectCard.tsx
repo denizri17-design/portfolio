@@ -39,11 +39,11 @@ export function ProjectCard({
   // Normalized cursor position in card space ([-1, 1])
   const nx = useMotionValue(0);
   const ny = useMotionValue(0);
-  const tiltX = useSpring(useTransform(ny, [-1, 1], [6, -6]), {
+  const tiltX = useSpring(useTransform(ny, [-1, 1], [3, -3]), {
     stiffness: 220,
     damping: 22,
   });
-  const tiltY = useSpring(useTransform(nx, [-1, 1], [-6, 6]), {
+  const tiltY = useSpring(useTransform(nx, [-1, 1], [-3, 3]), {
     stiffness: 220,
     damping: 22,
   });
@@ -65,7 +65,7 @@ export function ProjectCard({
     ny.set(0);
   };
 
-  const spotlight = useMotionTemplate`radial-gradient(420px circle at ${mouseX}px ${mouseY}px, rgba(255,255,255,0.07), transparent 60%)`;
+  const spotlight = useMotionTemplate`radial-gradient(420px circle at ${mouseX}px ${mouseY}px, rgba(212,165,116,0.1), transparent 60%)`;
 
   const images = project.images ?? (project.image ? [project.image] : []);
   const hasImage = images.length > 0;
@@ -85,7 +85,7 @@ export function ProjectCard({
         transformPerspective: 1100,
       }}
       className={cn(
-        "group relative isolate flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-[var(--color-surface)]/60 backdrop-blur-md transition-[border-color,box-shadow] duration-500 hover:border-white/20 hover:shadow-[0_30px_60px_-20px_rgba(124,92,255,0.35)]",
+        "group relative isolate flex flex-col overflow-hidden rounded-[1.75rem] border border-[#d4a574]/12 bg-[var(--color-surface)]/70 backdrop-blur-md transition-[border-color,box-shadow] duration-500 hover:border-[#d4a574]/35 hover:shadow-[0_30px_60px_-20px_rgba(212,165,116,0.28)]",
         featured && "lg:col-span-2",
       )}
     >
@@ -98,7 +98,8 @@ export function ProjectCard({
       {/* Cover */}
       <div
         className={cn(
-          "relative h-56 overflow-hidden sm:h-64",
+          "relative overflow-hidden",
+          featured ? "h-64 sm:h-80" : "h-56 sm:h-64",
           "bg-gradient-to-br",
           project.cover.gradient,
         )}
@@ -205,7 +206,7 @@ export function ProjectCard({
       </div>
 
       <div className="relative z-10 flex flex-1 flex-col p-6 sm:p-7">
-        <h3 className="font-display text-2xl font-semibold tracking-tight text-white">
+        <h3 className="font-display text-2xl font-medium italic tracking-tight text-[#f4efe6]">
           {project.name}
         </h3>
         <p className="mt-1.5 text-sm text-white/55">{project.tagline}</p>
@@ -217,7 +218,7 @@ export function ProjectCard({
         <ul className="mt-5 space-y-1.5 text-[13.5px] text-white/65">
           {project.bullets.slice(0, 4).map((b) => (
             <li key={b} className="flex gap-2 leading-snug">
-              <span className="mt-2 inline-block h-1 w-1 flex-shrink-0 rounded-full bg-white/40" />
+              <span className="mt-2 inline-block h-1 w-1 flex-shrink-0 rounded-full bg-[#d4a574]/70" />
               <span>{b}</span>
             </li>
           ))}
@@ -245,7 +246,7 @@ export function ProjectCard({
               href={project.links.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="group/btn inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-2 text-xs font-medium text-black transition hover:bg-white/90"
+              className="group/btn inline-flex items-center gap-1.5 rounded-full bg-[#f4efe6] px-3.5 py-2 text-xs font-medium text-[#1a1410] transition hover:bg-[#fff8ee]"
             >
               <ExternalLink size={13} />
               {t.work.live}
@@ -264,7 +265,7 @@ export function ProjectCard({
                 "group/btn inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-xs font-medium transition",
                 project.links.live
                   ? "border border-white/15 bg-white/[0.03] text-white/80 hover:border-white/30 hover:text-white"
-                  : "bg-white text-black hover:bg-white/90",
+                  : "bg-[#f4efe6] text-[#1a1410] hover:bg-[#fff8ee]",
               )}
             >
               <Apple size={13} />

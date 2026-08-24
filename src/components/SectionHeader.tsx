@@ -18,9 +18,9 @@ export function SectionHeader({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.4 }}
         transition={{ duration: 0.5 }}
-        className="mb-3 inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.25em] text-white/50"
+        className="mb-3 inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.28em] text-[#d4a574]"
       >
-        <span className="h-px w-8 bg-white/30" />
+        <span className="h-px w-8 bg-[#d4a574]/50" />
         {kicker}
       </motion.div>
       <motion.h2
@@ -28,7 +28,7 @@ export function SectionHeader({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.4 }}
         transition={{ duration: 0.6, delay: 0.05 }}
-        className="font-display text-[clamp(1.8rem,4vw,3rem)] font-semibold leading-tight tracking-[-0.02em] text-white"
+        className="font-display text-[clamp(1.8rem,4vw,3rem)] font-medium italic leading-[1.1] tracking-[-0.02em] text-[#f4efe6]"
       >
         {title}
       </motion.h2>
