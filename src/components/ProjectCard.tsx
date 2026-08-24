@@ -26,7 +26,7 @@ export function ProjectCard({
   const images = project.images ?? (project.image ? [project.image] : []);
   const isPhone = project.imageFit === "contain";
   const kind = isPhone ? "phone" : "screen";
-  const useWebGL = featured && images.length > 0;
+  const useWebGL = images.length > 0;
 
   return (
     <motion.article
@@ -45,7 +45,7 @@ export function ProjectCard({
         )}
       >
         {useWebGL ? (
-          <DeviceStage urls={images.slice(0, 2)} kind={kind} />
+          <DeviceStage urls={images.slice(0, 3)} kind={kind} />
         ) : (
           <CssProductStage
             images={images}
