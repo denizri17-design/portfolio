@@ -1,19 +1,11 @@
 "use client";
 
-import Image from "next/image";
-import {
-  motion,
-  useMotionValue,
-  useReducedMotion,
-  useSpring,
-  useTransform,
-} from "framer-motion";
+import { motion } from "framer-motion";
 import { Apple, ArrowUpRight, ExternalLink, Github, Lock, Play } from "lucide-react";
-import { asset } from "@/lib/asset";
 import { t } from "@/lib/i18n/dict";
 import { cn } from "@/lib/utils";
-import { ProjectIcon } from "./ProjectIcon";
-import { ProjectCarousel } from "./ProjectCarousel";
+import { CssProductStage } from "./CssProductStage";
+import { DeviceStage } from "./three/DeviceStage";
 import type { Project } from "@/data/projects";
 
 const statusLabel: Record<Project["status"], string> = {
@@ -31,151 +23,60 @@ export function ProjectCard({
   index: number;
   featured?: boolean;
 }) {
-  const prefersReducedMotion = useReducedMotion();
-  const nx = useMotionValue(0);
-  const ny = useMotionValue(0);
-  const tiltX = useSpring(useTransform(ny, [-1, 1], [10, -10]), {
-    stiffness: 200,
-    damping: 20,
-  });
-  const tiltY = useSpring(useTransform(nx, [-1, 1], [-12, 12]), {
-    stiffness: 200,
-    damping: 20,
-  });
-  const lift = useSpring(useTransform(ny, [-1, 1], [8, -2]), {
-    stiffness: 200,
-    damping: 22,
-  });
-
-  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    if (!prefersReducedMotion) {
-      nx.set((x / rect.width) * 2 - 1);
-      ny.set((y / rect.height) * 2 - 1);
-    }
-  };
-
-  const onLeave = () => {
-    nx.set(0);
-    ny.set(0);
-  };
-
   const images = project.images ?? (project.image ? [project.image] : []);
-  const hasImage = images.length > 0;
-  const isCarousel = images.length > 1;
   const isPhone = project.imageFit === "contain";
+  const kind = isPhone ? "phone" : "screen";
+  const useWebGL = featured && images.length > 0;
 
   return (
     <motion.article
       initial={{ opacity: 0, y: 28 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, delay: Math.min(index * 0.05, 0.4) }}
-      className={cn("flex flex-col", featured && "lg:col-span-2")}
+      className={cn(
+        "group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#0a0c12]/80 shadow-[0_24px_60px_-28px_rgba(0,0,0,0.85)] backdrop-blur-md",
+        featured && "lg:col-span-2",
+      )}
     >
-      <motion.div
-        onMouseMove={onMove}
-        onMouseLeave={onLeave}
-        style={{
-          rotateX: tiltX,
-          rotateY: tiltY,
-          y: lift,
-          transformPerspective: 1400,
-        }}
-        className="gallery-frame group"
+      <div
+        className={cn(
+          "relative overflow-hidden",
+          featured ? "h-[22rem] sm:h-[28rem]" : "h-72 sm:h-80",
+        )}
       >
-        <div
-          className={cn(
-            "gallery-mat relative overflow-hidden",
-            featured ? "h-72 sm:h-[22rem]" : "h-60 sm:h-72",
-          )}
-        >
-          <div
-            className={cn(
-              "absolute inset-0 bg-gradient-to-br",
-              project.cover.gradient,
-            )}
+        {useWebGL ? (
+          <DeviceStage urls={images.slice(0, 2)} kind={kind} />
+        ) : (
+          <CssProductStage
+            images={images}
+            alt={project.name}
+            kind={kind}
+            icon={project.cover.icon}
+            gradient={project.cover.gradient}
           />
+        )}
 
-          {hasImage ? (
-            isCarousel ? (
-              <ProjectCarousel
-                images={images}
-                alt={project.name}
-                variant={isPhone ? "phone" : "cover"}
-                cardIndex={index}
-              />
-            ) : isPhone ? (
-              <div className="absolute inset-0 grid place-items-center">
-                <div className="absolute inset-0 bg-grid opacity-30" />
-                <div className="relative z-10 h-full py-5 transition-transform duration-700 group-hover:scale-[1.03]">
-                  <div className="relative aspect-[9/19.5] h-full overflow-hidden rounded-[28px] border-4 border-black/70 bg-black shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)]">
-                    <Image
-                      src={asset(images[0])}
-                      alt={`${project.name} screenshot`}
-                      fill
-                      sizes="(min-width: 1024px) 240px, 200px"
-                      className="object-cover"
-                    />
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <>
-                <Image
-                  src={asset(images[0])}
-                  alt={`${project.name} screenshot`}
-                  fill
-                  sizes="(min-width: 1024px) 600px, 100vw"
-                  className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
-                  priority={index < 2}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
-              </>
-            )
-          ) : (
-            <>
-              <div className="absolute inset-0 bg-grid opacity-40" />
-              <div className="absolute inset-0 grid place-items-center">
-                <div
-                  className={cn(
-                    "grid h-20 w-20 place-items-center rounded-2xl bg-black/40 ring-1 backdrop-blur-md",
-                    project.cover.accent,
-                  )}
-                >
-                  <ProjectIcon
-                    name={project.cover.icon}
-                    size={36}
-                    className="text-white"
-                  />
-                </div>
-              </div>
-            </>
-          )}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0a0c12] to-transparent" />
 
-          <div className="absolute left-4 top-4 z-20 flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-black/60 px-2.5 py-1 text-[11px] font-medium text-white/90 ring-1 ring-white/10 backdrop-blur">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#6ef3c5]" />
-              {statusLabel[project.status]}
-            </span>
+        <div className="absolute left-4 top-4 z-20 flex flex-wrap items-center gap-2">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-black/55 px-2.5 py-1 text-[11px] font-medium text-white/90 ring-1 ring-white/10 backdrop-blur">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#6ef3c5]" />
+            {statusLabel[project.status]}
+          </span>
+          <span className="inline-flex items-center rounded-full bg-black/55 px-2.5 py-1 font-mono text-[11px] tracking-wider text-white/70 ring-1 ring-white/10 backdrop-blur">
+            {project.year}
+          </span>
+        </div>
+
+        {project.isPrivate && (
+          <div className="absolute right-4 top-4 z-20 inline-flex items-center gap-1 rounded-full bg-black/55 px-2.5 py-1 text-[11px] text-white/80 ring-1 ring-white/10 backdrop-blur">
+            <Lock size={11} />
+            Private
           </div>
+        )}
+      </div>
 
-          {project.isPrivate && (
-            <div className="absolute right-4 top-4 z-20 inline-flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 text-[11px] text-white/80 ring-1 ring-white/10 backdrop-blur">
-              <Lock size={11} />
-              Private
-            </div>
-          )}
-        </div>
-
-        <div className="gallery-plaque">
-          <span>{project.name}</span>
-          <span>{project.year}</span>
-        </div>
-      </motion.div>
-
-      <div className="flex flex-1 flex-col px-1 pt-6">
+      <div className="flex flex-1 flex-col p-6 sm:p-7">
         <h3 className="font-display text-2xl font-semibold tracking-tight text-white">
           {project.name}
         </h3>

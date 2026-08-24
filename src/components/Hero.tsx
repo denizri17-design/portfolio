@@ -22,7 +22,7 @@ export function Hero() {
       <HeroStage />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-[var(--color-bg)] via-[var(--color-bg)]/82 to-transparent max-md:bg-gradient-to-t max-md:from-[var(--color-bg)] max-md:via-[var(--color-bg)]/75 max-md:to-transparent"
+        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-[var(--color-bg)] via-[var(--color-bg)]/55 to-transparent max-md:bg-gradient-to-t max-md:from-[var(--color-bg)] max-md:via-[var(--color-bg)]/70 max-md:to-transparent"
       />
 
       <div className="container-page relative z-10">
