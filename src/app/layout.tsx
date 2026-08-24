@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Fraunces, JetBrains_Mono } from "next/font/google";
+import { Inter, Syne, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "/portfolio";
@@ -11,9 +11,9 @@ const inter = Inter({
   display: "swap",
 });
 
-const fraunces = Fraunces({
+const syne = Syne({
   subsets: ["latin"],
-  variable: "--font-fraunces",
+  variable: "--font-syne",
   display: "swap",
 });
 
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b0a09",
+  themeColor: "#05060a",
   width: "device-width",
   initialScale: 1,
 };
@@ -64,7 +64,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${fraunces.variable} ${jetbrains.variable}`}
+      className={`${inter.variable} ${syne.variable} ${jetbrains.variable}`}
     >
       <body className="font-sans antialiased">{children}</body>
     </html>

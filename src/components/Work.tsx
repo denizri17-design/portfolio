@@ -66,8 +66,8 @@ export function Work() {
                 className={cn(
                   "group inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-sm transition",
                   active
-                    ? "border-[#f4efe6] bg-[#f4efe6] text-[#1a1410]"
-                    : "border-white/10 bg-white/[0.02] text-white/70 hover:border-[#d4a574]/40 hover:text-[#f4efe6]",
+                    ? "border-white bg-white text-black"
+                    : "border-white/10 bg-white/[0.02] text-white/70 hover:border-[#6ef3c5]/40 hover:text-white",
                 )}
               >
                 {f.label}
@@ -93,7 +93,7 @@ export function Work() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:gap-6"
+            className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-x-7 md:gap-y-14"
           >
             {visible.map((p, i) => (
               <ProjectCard

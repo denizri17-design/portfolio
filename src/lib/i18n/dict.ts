@@ -47,9 +47,9 @@ export const t = {
   },
   work: {
     kicker: "Selected work",
-    title: "Things I've built recently.",
+    title: "A gallery of things I've shipped.",
     subtitle:
-      "12 production / personal projects. Live URLs and tech are linked where public.",
+      "12 production pieces — framed like paintings, linked where public.",
     filterAll: "All",
     filterSaas: "SaaS",
     filterCrm: "CRM",
@@ -71,7 +71,7 @@ export const t = {
     copied: "Copied!",
   },
   footer: {
-    built: "Built with Next.js 15, Tailwind v4 & Framer Motion.",
+    built: "Built with Next.js, Three.js, React Three Fiber & Framer Motion.",
     backTop: "Back to top",
   },
 } as const;

@@ -144,15 +144,15 @@ export function Stack() {
         </div>
       </div>
 
-      <div className="relative mt-16 overflow-hidden border-y border-[#d4a574]/12 bg-[#d4a574]/[0.03] py-5">
+      <div className="relative mt-16 overflow-hidden border-y border-white/10 bg-white/[0.02] py-5">
         <div className="marquee flex w-max items-center gap-12 whitespace-nowrap">
           {[...marqueeRow, ...marqueeRow].map((s, i) => (
             <span
               key={`${s}-${i}`}
-              className="font-display text-2xl font-medium italic text-[#d4a574]/45 sm:text-3xl"
+              className="font-display text-2xl font-semibold tracking-tight text-white/30 sm:text-3xl"
             >
               {s}
-              <span className="ml-12 text-[#d4a574]/20">✦</span>
+              <span className="ml-12 text-[#6ef3c5]/25">✦</span>
             </span>
           ))}
         </div>

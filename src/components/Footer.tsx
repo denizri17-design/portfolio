@@ -10,14 +10,14 @@ export function Footer() {
     <footer className="relative border-t border-white/10 py-10">
       <div className="container-page flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
         <div className="flex items-center gap-3">
-          <span className="relative grid h-8 w-8 place-items-center overflow-hidden rounded-full bg-gradient-to-br from-[#f0d9b5] via-[#d4a574] to-[#e07a5f]">
+          <span className="relative grid h-8 w-8 place-items-center overflow-hidden rounded-full bg-gradient-to-br from-[#6ef3c5] via-[#8b9cff] to-[#6ea8ff]">
             <span className="absolute inset-0.5 rounded-full bg-[var(--color-bg)]" />
-            <span className="relative font-display text-[13px] font-semibold tracking-tight text-[#f0d9b5]">
+            <span className="relative font-display text-[13px] font-bold tracking-tight text-white">
               R
             </span>
           </span>
           <div>
-            <div className="font-display text-sm font-medium italic text-[#f4efe6]">
+            <div className="font-display text-sm font-semibold tracking-tight text-white">
               Ri Abba
             </div>
             <div className="text-xs text-white/45">

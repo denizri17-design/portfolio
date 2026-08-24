@@ -36,7 +36,7 @@ export function About() {
             <ul className="space-y-3 text-sm">
               {t.about.highlights.map((h) => (
                 <li key={h} className="flex items-start gap-3 text-white/75">
-                  <span className="mt-0.5 grid h-5 w-5 flex-shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#d4a574]/30 to-[#e07a5f]/25 ring-1 ring-[#d4a574]/20">
+                  <span className="mt-0.5 grid h-5 w-5 flex-shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#6ef3c5]/25 to-[#8b9cff]/25 ring-1 ring-[#6ef3c5]/20">
                     <Check size={12} className="text-white" />
                   </span>
                   <span>{h}</span>

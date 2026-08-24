@@ -5,6 +5,7 @@ import { ArrowDown, ArrowUpRight, Github, Sparkles } from "lucide-react";
 import { t } from "@/lib/i18n/dict";
 import { Magnetic } from "./Magnetic";
 import { Counter } from "./Counter";
+import { HeroStage } from "./three/HeroStage";
 
 function parseStatNumber(s: string): { num: number; suffix: string } | null {
   const m = s.match(/^(\d+)(.*)$/);
@@ -16,38 +17,44 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[100svh] flex-col justify-center pt-32 pb-20"
+      className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden pt-28 pb-16"
     >
-      <div className="container-page">
+      <HeroStage />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-[var(--color-bg)] via-[var(--color-bg)]/82 to-transparent max-md:bg-gradient-to-t max-md:from-[var(--color-bg)] max-md:via-[var(--color-bg)]/75 max-md:to-transparent"
+      />
+
+      <div className="container-page relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#d4a574]/25 bg-[#d4a574]/[0.06] px-3 py-1.5 text-xs text-[#f0d9b5]"
+          className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs text-white/70"
         >
           <span className="relative grid h-1.5 w-1.5">
-            <span className="absolute inset-0 animate-ping rounded-full bg-emerald-400/70" />
-            <span className="relative h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            <span className="absolute inset-0 animate-ping rounded-full bg-[#6ef3c5]/70" />
+            <span className="relative h-1.5 w-1.5 rounded-full bg-[#6ef3c5]" />
           </span>
           {t.hero.eyebrow}
         </motion.div>
 
-        <h1 className="font-display text-[clamp(2.5rem,7.2vw,5.6rem)] font-medium leading-[1.04] tracking-[-0.03em]">
+        <h1 className="max-w-3xl font-display text-[clamp(2.4rem,6.6vw,5.4rem)] font-semibold leading-[1.02] tracking-[-0.04em]">
           <motion.span
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.05 }}
-            className="block text-[#f4efe6]"
+            className="block text-white"
           >
             {t.hero.titleA}{" "}
-            <span className="gradient-text-brand italic">{t.hero.titleB}</span>
+            <span className="gradient-text-brand">{t.hero.titleB}</span>
             {t.hero.titleC}
           </motion.span>
           <motion.span
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="block text-[#f4efe6]"
+            className="block text-white"
           >
             {t.hero.titleD}
           </motion.span>
@@ -55,7 +62,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.25 }}
-            className="block italic text-[#d4a574]/80"
+            className="block text-white/45"
           >
             {t.hero.titleE}
           </motion.span>
@@ -65,7 +72,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.35 }}
-          className="mt-8 max-w-2xl text-base text-white/65 sm:text-lg"
+          className="mt-8 max-w-xl text-base text-white/65 sm:text-lg"
         >
           {t.hero.subtitle}
         </motion.p>
@@ -79,9 +86,8 @@ export function Hero() {
           <Magnetic strength={10}>
             <a
               href="#work"
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-[#f4efe6] px-5 py-3 text-sm font-medium text-[#1a1410] shadow-[0_10px_40px_-10px_rgba(212,165,116,0.5)] transition hover:bg-[#fff8ee]"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition hover:bg-[#d7fff2]"
             >
-              <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-black/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               <Sparkles size={16} />
               {t.hero.ctaWork}
               <ArrowDown
@@ -93,7 +99,7 @@ export function Hero() {
           <Magnetic strength={8}>
             <a
               href="#contact"
-              className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-5 py-3 text-sm font-medium text-white transition hover:border-white/30 hover:bg-white/[0.06]"
+              className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-5 py-3 text-sm font-medium text-white transition hover:border-white/30 hover:bg-white/[0.07]"
             >
               {t.hero.ctaContact}
               <ArrowUpRight
@@ -117,24 +123,24 @@ export function Hero() {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-[1.75rem] border border-[#d4a574]/15 bg-[#d4a574]/[0.06] sm:grid-cols-3"
+          className="mt-16 grid max-w-3xl grid-cols-1 gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] sm:grid-cols-3"
         >
           {t.hero.stats.map((s) => {
             const parsed = parseStatNumber(s.k);
             return (
               <div
                 key={s.v}
-                className="group relative overflow-hidden bg-[var(--color-bg)]/40 px-6 py-5 transition-colors sm:py-7 hover:bg-[var(--color-bg)]/60"
+                className="group relative overflow-hidden bg-[var(--color-bg)]/55 px-6 py-5 transition-colors sm:py-7 hover:bg-[var(--color-bg)]/70"
               >
                 <div
                   aria-hidden
                   className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                   style={{
                     background:
-                      "radial-gradient(380px circle at 30% 30%, rgba(212,165,116,0.16), transparent 70%)",
+                      "radial-gradient(380px circle at 30% 30%, rgba(110,243,197,0.14), transparent 70%)",
                   }}
                 />
-                <dt className="relative font-display text-3xl font-medium italic text-[#f4efe6] sm:text-4xl">
+                <dt className="relative font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">
                   {parsed ? (
                     <>
                       <Counter to={parsed.num} />
@@ -155,7 +161,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1 }}
-        className="container-page mt-16 flex items-center justify-center sm:mt-24"
+        className="container-page relative z-10 mt-14 flex items-center justify-center sm:mt-16"
       >
         <a
           href="#work"

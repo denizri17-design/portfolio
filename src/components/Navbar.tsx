@@ -48,13 +48,13 @@ export function Navbar() {
             href="#top"
             className="group flex items-center gap-2.5 text-sm font-semibold tracking-wide"
           >
-            <span className="relative grid h-8 w-8 place-items-center overflow-hidden rounded-full bg-gradient-to-br from-[#f0d9b5] via-[#d4a574] to-[#e07a5f]">
+            <span className="relative grid h-8 w-8 place-items-center overflow-hidden rounded-full bg-gradient-to-br from-[#6ef3c5] via-[#8b9cff] to-[#6ea8ff]">
               <span className="absolute inset-0.5 rounded-full bg-[var(--color-bg)]" />
-              <span className="relative font-display text-[13px] font-semibold tracking-tight text-[#f0d9b5]">
+              <span className="relative font-display text-[13px] font-bold tracking-tight text-white">
                 R
               </span>
             </span>
-            <span className="hidden sm:inline font-display text-base italic text-[#f4efe6]/90 transition group-hover:text-[#f4efe6]">
+            <span className="hidden font-display text-base font-semibold tracking-tight text-white/90 transition group-hover:text-white sm:inline">
               Ri Abba
             </span>
           </a>
@@ -76,7 +76,7 @@ export function Navbar() {
             <Magnetic strength={10} className="hidden md:inline-flex">
               <a
                 href="#contact"
-                className="group inline-flex items-center gap-1.5 rounded-full bg-[#f4efe6] px-4 py-2 text-sm font-medium text-[#1a1410] shadow-[0_10px_30px_-12px_rgba(212,165,116,0.45)] transition hover:bg-[#fff8ee]"
+                className="group inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-medium text-black transition hover:bg-[#d7fff2]"
               >
                 {t.nav.hire}
                 <span aria-hidden className="inline-block transition-transform group-hover:translate-x-0.5">→</span>
@@ -119,7 +119,7 @@ export function Navbar() {
                   <a
                     href="#contact"
                     onClick={() => setOpen(false)}
-                    className="mt-1 block rounded-xl bg-[#f4efe6] px-3 py-2.5 text-center text-sm font-medium text-[#1a1410]"
+                    className="mt-1 block rounded-xl bg-white px-3 py-2.5 text-center text-sm font-medium text-black"
                   >
                     {t.nav.hire}
                   </a>

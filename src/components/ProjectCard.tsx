@@ -3,7 +3,6 @@
 import Image from "next/image";
 import {
   motion,
-  useMotionTemplate,
   useMotionValue,
   useReducedMotion,
   useSpring,
@@ -32,19 +31,19 @@ export function ProjectCard({
   index: number;
   featured?: boolean;
 }) {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
   const prefersReducedMotion = useReducedMotion();
-
-  // Normalized cursor position in card space ([-1, 1])
   const nx = useMotionValue(0);
   const ny = useMotionValue(0);
-  const tiltX = useSpring(useTransform(ny, [-1, 1], [3, -3]), {
-    stiffness: 220,
-    damping: 22,
+  const tiltX = useSpring(useTransform(ny, [-1, 1], [10, -10]), {
+    stiffness: 200,
+    damping: 20,
   });
-  const tiltY = useSpring(useTransform(nx, [-1, 1], [-3, 3]), {
-    stiffness: 220,
+  const tiltY = useSpring(useTransform(nx, [-1, 1], [-12, 12]), {
+    stiffness: 200,
+    damping: 20,
+  });
+  const lift = useSpring(useTransform(ny, [-1, 1], [8, -2]), {
+    stiffness: 200,
     damping: 22,
   });
 
@@ -52,8 +51,6 @@ export function ProjectCard({
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    mouseX.set(x);
-    mouseY.set(y);
     if (!prefersReducedMotion) {
       nx.set((x / rect.width) * 2 - 1);
       ny.set((y / rect.height) * 2 - 1);
@@ -65,8 +62,6 @@ export function ProjectCard({
     ny.set(0);
   };
 
-  const spotlight = useMotionTemplate`radial-gradient(420px circle at ${mouseX}px ${mouseY}px, rgba(212,165,116,0.1), transparent 60%)`;
-
   const images = project.images ?? (project.image ? [project.image] : []);
   const hasImage = images.length > 0;
   const isCarousel = images.length > 1;
@@ -74,151 +69,126 @@ export function ProjectCard({
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 28 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: Math.min(index * 0.05, 0.4) }}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      style={{
-        rotateX: tiltX,
-        rotateY: tiltY,
-        transformPerspective: 1100,
-      }}
-      className={cn(
-        "group relative isolate flex flex-col overflow-hidden rounded-[1.75rem] border border-[#d4a574]/12 bg-[var(--color-surface)]/70 backdrop-blur-md transition-[border-color,box-shadow] duration-500 hover:border-[#d4a574]/35 hover:shadow-[0_30px_60px_-20px_rgba(212,165,116,0.28)]",
-        featured && "lg:col-span-2",
-      )}
+      transition={{ duration: 0.55, delay: Math.min(index * 0.05, 0.4) }}
+      className={cn("flex flex-col", featured && "lg:col-span-2")}
     >
       <motion.div
-        aria-hidden
-        style={{ background: spotlight }}
-        className="pointer-events-none absolute inset-0 z-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-      />
-
-      {/* Cover */}
-      <div
-        className={cn(
-          "relative overflow-hidden",
-          featured ? "h-64 sm:h-80" : "h-56 sm:h-64",
-          "bg-gradient-to-br",
-          project.cover.gradient,
-        )}
+        onMouseMove={onMove}
+        onMouseLeave={onLeave}
+        style={{
+          rotateX: tiltX,
+          rotateY: tiltY,
+          y: lift,
+          transformPerspective: 1400,
+        }}
+        className="gallery-frame group"
       >
-        {hasImage ? (
-          isCarousel ? (
-            <>
-              <div className="absolute inset-0 bg-grid opacity-40" />
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.18),transparent_60%)]" />
+        <div
+          className={cn(
+            "gallery-mat relative overflow-hidden",
+            featured ? "h-72 sm:h-[22rem]" : "h-60 sm:h-72",
+          )}
+        >
+          <div
+            className={cn(
+              "absolute inset-0 bg-gradient-to-br",
+              project.cover.gradient,
+            )}
+          />
+
+          {hasImage ? (
+            isCarousel ? (
               <ProjectCarousel
                 images={images}
                 alt={project.name}
                 variant={isPhone ? "phone" : "cover"}
                 cardIndex={index}
               />
-            </>
-          ) : isPhone ? (
-            <div className="absolute inset-0 grid place-items-center">
+            ) : isPhone ? (
+              <div className="absolute inset-0 grid place-items-center">
+                <div className="absolute inset-0 bg-grid opacity-30" />
+                <div className="relative z-10 h-full py-5 transition-transform duration-700 group-hover:scale-[1.03]">
+                  <div className="relative aspect-[9/19.5] h-full overflow-hidden rounded-[28px] border-4 border-black/70 bg-black shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)]">
+                    <Image
+                      src={asset(images[0])}
+                      alt={`${project.name} screenshot`}
+                      fill
+                      sizes="(min-width: 1024px) 240px, 200px"
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <>
+                <Image
+                  src={asset(images[0])}
+                  alt={`${project.name} screenshot`}
+                  fill
+                  sizes="(min-width: 1024px) 600px, 100vw"
+                  className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
+                  priority={index < 2}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
+              </>
+            )
+          ) : (
+            <>
               <div className="absolute inset-0 bg-grid opacity-40" />
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.18),transparent_60%)]" />
-              <div className="relative z-10 h-full py-4 transition-transform duration-700 group-hover:scale-[1.03]">
-                <div className="relative h-full aspect-[9/19.5] rounded-[28px] border-4 border-black/70 bg-black shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)] overflow-hidden">
-                  <Image
-                    src={asset(images[0])}
-                    alt={`${project.name} screenshot`}
-                    fill
-                    sizes="(min-width: 1024px) 240px, 200px"
-                    className="object-cover"
+              <div className="absolute inset-0 grid place-items-center">
+                <div
+                  className={cn(
+                    "grid h-20 w-20 place-items-center rounded-2xl bg-black/40 ring-1 backdrop-blur-md",
+                    project.cover.accent,
+                  )}
+                >
+                  <ProjectIcon
+                    name={project.cover.icon}
+                    size={36}
+                    className="text-white"
                   />
                 </div>
               </div>
-            </div>
-          ) : (
-            <>
-              <Image
-                src={asset(images[0])}
-                alt={`${project.name} screenshot`}
-                fill
-                sizes="(min-width: 1024px) 600px, 100vw"
-                className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
-                priority={index < 2}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/0 to-black/30" />
             </>
-          )
-        ) : (
-          <>
-            <div className="absolute inset-0 bg-grid opacity-50" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.18),transparent_60%)]" />
-            <motion.div
-              className="absolute inset-x-0 bottom-0 flex items-end justify-center pb-7"
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <div
-                className={cn(
-                  "grid h-20 w-20 place-items-center rounded-2xl bg-black/40 ring-1 backdrop-blur-md",
-                  project.cover.accent,
-                )}
-              >
-                <ProjectIcon
-                  name={project.cover.icon}
-                  size={36}
-                  className="text-white"
-                />
-              </div>
-            </motion.div>
-          </>
-        )}
+          )}
 
-        <div className="absolute left-5 top-5 z-20 flex flex-wrap items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-black/55 px-2.5 py-1 text-[11px] font-medium text-white/90 ring-1 ring-white/10 backdrop-blur">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-            {statusLabel[project.status]}
-          </span>
-          <span className="inline-flex items-center rounded-full bg-black/55 px-2.5 py-1 font-mono text-[11px] tracking-wider text-white/80 ring-1 ring-white/10 backdrop-blur">
-            {project.year}
-          </span>
+          <div className="absolute left-4 top-4 z-20 flex flex-wrap items-center gap-2">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-black/60 px-2.5 py-1 text-[11px] font-medium text-white/90 ring-1 ring-white/10 backdrop-blur">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#6ef3c5]" />
+              {statusLabel[project.status]}
+            </span>
+          </div>
+
+          {project.isPrivate && (
+            <div className="absolute right-4 top-4 z-20 inline-flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 text-[11px] text-white/80 ring-1 ring-white/10 backdrop-blur">
+              <Lock size={11} />
+              Private
+            </div>
+          )}
         </div>
 
-        {project.isPrivate && (
-          <div className="absolute right-5 top-5 z-20 inline-flex items-center gap-1 rounded-full bg-black/55 px-2.5 py-1 text-[11px] text-white/80 ring-1 ring-white/10 backdrop-blur">
-            <Lock size={11} />
-            Private
-          </div>
-        )}
+        <div className="gallery-plaque">
+          <span>{project.name}</span>
+          <span>{project.year}</span>
+        </div>
+      </motion.div>
 
-        {hasImage && (
-          <div className="pointer-events-none absolute bottom-4 right-4 z-20">
-            <div
-              className={cn(
-                "grid h-10 w-10 place-items-center rounded-xl bg-black/55 ring-1 backdrop-blur",
-                project.cover.accent,
-              )}
-            >
-              <ProjectIcon
-                name={project.cover.icon}
-                size={18}
-                className="text-white/90"
-              />
-            </div>
-          </div>
-        )}
-      </div>
-
-      <div className="relative z-10 flex flex-1 flex-col p-6 sm:p-7">
-        <h3 className="font-display text-2xl font-medium italic tracking-tight text-[#f4efe6]">
+      <div className="flex flex-1 flex-col px-1 pt-6">
+        <h3 className="font-display text-2xl font-semibold tracking-tight text-white">
           {project.name}
         </h3>
         <p className="mt-1.5 text-sm text-white/55">{project.tagline}</p>
 
-        <p className="mt-4 text-[15px] leading-relaxed text-white/75">
+        <p className="mt-4 text-[15px] leading-relaxed text-white/72">
           {project.description}
         </p>
 
-        <ul className="mt-5 space-y-1.5 text-[13.5px] text-white/65">
+        <ul className="mt-5 space-y-1.5 text-[13.5px] text-white/62">
           {project.bullets.slice(0, 4).map((b) => (
             <li key={b} className="flex gap-2 leading-snug">
-              <span className="mt-2 inline-block h-1 w-1 flex-shrink-0 rounded-full bg-[#d4a574]/70" />
+              <span className="mt-2 inline-block h-1 w-1 flex-shrink-0 rounded-full bg-[#6ef3c5]" />
               <span>{b}</span>
             </li>
           ))}
@@ -246,7 +216,7 @@ export function ProjectCard({
               href={project.links.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="group/btn inline-flex items-center gap-1.5 rounded-full bg-[#f4efe6] px-3.5 py-2 text-xs font-medium text-[#1a1410] transition hover:bg-[#fff8ee]"
+              className="group/btn inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-2 text-xs font-medium text-black transition hover:bg-[#d7fff2]"
             >
               <ExternalLink size={13} />
               {t.work.live}
@@ -265,7 +235,7 @@ export function ProjectCard({
                 "group/btn inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-xs font-medium transition",
                 project.links.live
                   ? "border border-white/15 bg-white/[0.03] text-white/80 hover:border-white/30 hover:text-white"
-                  : "bg-[#f4efe6] text-[#1a1410] hover:bg-[#fff8ee]",
+                  : "bg-white text-black hover:bg-[#d7fff2]",
               )}
             >
               <Apple size={13} />

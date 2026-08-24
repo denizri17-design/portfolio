@@ -25,6 +25,7 @@ const nextConfig = {
   assetPrefix: basePath || undefined,
   trailingSlash: true,
   reactStrictMode: true,
+  transpilePackages: ["three"],
   images: {
     unoptimized: true,
     remotePatterns: [
