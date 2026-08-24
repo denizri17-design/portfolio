@@ -49,7 +49,7 @@ export const t = {
     kicker: "Selected work",
     title: "A gallery of things I've shipped.",
     subtitle:
-      "12 production pieces — framed like paintings, linked where public.",
+      "13 production pieces. Live URLs and tech are linked where public.",
     filterAll: "All",
     filterSaas: "SaaS",
     filterCrm: "CRM",

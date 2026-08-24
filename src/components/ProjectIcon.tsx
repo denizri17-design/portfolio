@@ -14,6 +14,7 @@ import {
   Newspaper,
   Dumbbell,
   ClipboardList,
+  Cloud,
   type LucideIcon,
 } from "lucide-react";
 
@@ -31,6 +32,7 @@ const map: Record<string, LucideIcon> = {
   Newspaper,
   Dumbbell,
   ClipboardList,
+  Cloud,
 };
 
 export function ProjectIcon({

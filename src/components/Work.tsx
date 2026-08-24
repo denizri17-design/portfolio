@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 
 type FilterKey = "all" | ProjectCategory;
 
-const featuredSlugs = ["ourfit", "local-adjuster-mobile"];
+const featuredSlugs = ["runkoda", "ourfit", "local-adjuster-mobile"];
 
 export function Work() {
   const [filter, setFilter] = useState<FilterKey>("all");

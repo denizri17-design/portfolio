@@ -40,6 +40,41 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "runkoda",
+    name: "RunKoda",
+    tagline: "AI-powered cloud IDE — build with AI, code together, ship faster.",
+    description:
+      "A browser-based cloud development environment with an integrated AI agent, real-time collaboration, Docker workspaces, Git, and live preview. No local install — open runkoda.com and start coding.",
+    bullets: [
+      "AI agent & chat that reads the whole codebase, generates and patches code",
+      "Real-time collab: shared files, live cursors, no setup",
+      "Full IDE in Docker — Node, Python, Go, Rust, Java, C++, Ruby, PHP, TypeScript",
+      "Built-in Git, live preview, and instant workspace boot",
+    ],
+    category: ["saas", "web"],
+    year: "2026",
+    status: "live",
+    stack: [
+      "Cloud IDE",
+      "AI Agent",
+      "Docker",
+      "TypeScript",
+      "Git",
+      "Live Preview",
+    ],
+    links: {
+      live: "https://runkoda.com",
+    },
+    isPrivate: true,
+    image: "/projects/runkoda.webp",
+    imageFit: "cover",
+    cover: {
+      gradient: "from-sky-500/30 via-indigo-500/15 to-cyan-500/30",
+      accent: "ring-sky-400/40",
+      icon: "Cloud",
+    },
+  },
+  {
     slug: "nextstep",
     name: "NextStep",
     tagline: "AI Career Copilot — from job search to job offer.",
