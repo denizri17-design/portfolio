@@ -41,7 +41,7 @@ export function ProjectCard({
       <div
         className={cn(
           "relative overflow-hidden",
-          featured ? "h-[22rem] sm:h-[28rem]" : "h-72 sm:h-80",
+          featured ? "h-[24rem] sm:h-[30rem]" : "h-80 sm:h-[22rem]",
         )}
       >
         {useWebGL ? (
@@ -56,7 +56,7 @@ export function ProjectCard({
           />
         )}
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0a0c12] to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-[#0a0c12] to-transparent" />
 
         <div className="absolute left-4 top-4 z-20 flex flex-wrap items-center gap-2">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-black/55 px-2.5 py-1 text-[11px] font-medium text-white/90 ring-1 ring-white/10 backdrop-blur">

@@ -138,7 +138,7 @@
     height: 100%;
     width: 100%;
     overflow: hidden;
-    background: #07090e;
+    background: #141821;
   }
 
   .product-orb {
@@ -191,45 +191,43 @@
   }
 
   .fan-phone {
-    width: min(28%, 168px);
+    width: min(30%, 220px);
     aspect-ratio: 9 / 19.5;
     border-radius: 26px;
-    border: 4px solid #0b0c10;
-    top: 10%;
-    left: 50%;
+    border: 4px solid #1c1f28;
+    top: 8%;
   }
 
   .fan-screen {
-    width: min(42%, 300px);
+    width: min(31%, 340px);
     aspect-ratio: 16 / 10;
     border-radius: 14px;
-    border: 3px solid #12141a;
-    top: 18%;
-    left: 50%;
+    border: 3px solid #1c1f28;
+    top: 20%;
   }
 
-  .fan-device-0 { z-index: 1; animation-delay: 0s; }
-  .fan-device-1 { z-index: 3; animation-delay: 0.35s; }
-  .fan-device-2 { z-index: 2; animation-delay: 0.7s; }
+  .fan-device-0 { z-index: 1; left: 4%; animation-delay: 0s; }
+  .fan-device-1 { z-index: 3; left: 50%; animation-delay: 0.35s; }
+  .fan-device-2 { z-index: 2; right: 4%; left: auto; animation-delay: 0.7s; }
 
   .device-fan-phone .fan-device-0 {
-    transform: translateX(-118%) rotateY(32deg) rotateX(10deg) scale(0.86);
+    transform: rotateY(10deg) rotateX(4deg);
   }
   .device-fan-phone .fan-device-1 {
-    transform: translateX(-50%) rotateY(-8deg) rotateX(8deg) scale(1);
+    transform: translateX(-50%) rotateY(0deg) rotateX(3deg);
   }
   .device-fan-phone .fan-device-2 {
-    transform: translateX(18%) rotateY(-32deg) rotateX(10deg) scale(0.86);
+    transform: rotateY(-10deg) rotateX(4deg);
   }
 
   .device-fan-screen .fan-device-0 {
-    transform: translateX(-108%) rotateY(24deg) rotateX(8deg) scale(0.82);
+    transform: rotateY(8deg) rotateX(4deg);
   }
   .device-fan-screen .fan-device-1 {
-    transform: translateX(-50%) rotateY(-6deg) rotateX(6deg) scale(1);
+    transform: translateX(-50%) rotateY(0deg) rotateX(3deg);
   }
   .device-fan-screen .fan-device-2 {
-    transform: translateX(8%) rotateY(-24deg) rotateX(8deg) scale(0.82);
+    transform: rotateY(-8deg) rotateX(4deg);
   }
 
   @keyframes fan-float {
