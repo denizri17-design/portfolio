@@ -4,7 +4,7 @@
 
 🌐 **Live:** [denizri17-design.github.io/portfolio/](https://denizri17-design.github.io/portfolio/)
 
-Personal portfolio for **Ri Abba**, fullstack developer. Showcases 10 production
+Personal portfolio for **Ri Abba**, fullstack developer. Showcases 12 production
 products: AI SaaS, multi-tenant CRMs, native iOS/Android apps, marketing sites,
 and indie games built with React Native + Unity.
 
@@ -13,10 +13,12 @@ and indie games built with React Native + Unity.
 | Project | Type | Live |
 |---|---|---|
 | **NextStep** — AI Career Copilot | AI SaaS | [github.com/denizri17-design/nextstep](https://github.com/denizri17-design/nextstep) |
+| **OurFit** — AI form coach | Fitness app + site | [ourfit.co](https://ourfit.co) · [App Store](https://apps.apple.com/app/id6791250652) |
 | **Skallix CRM** — Multi-tenant roofing CRM | CRM / SaaS | [skallix.com](https://skallix.com) |
 | **Skallix Doorknocking** — Field-rep mobile app | Mobile (iOS+Android) | [Repo](https://github.com/denizri17-design/skallix-doorknocking-mobile) |
 | **DLG Platform** — Laravel CRM | CRM | [Repo](https://github.com/denizri17-design/dlgplatform) |
-| **Public Adjuster SaaS** | SaaS / CRM | [Repo](https://github.com/denizri17-design/public-adjuster) |
+| **Your Local Adjuster** — Public adjuster SaaS | SaaS / CRM | [local-adjuster.com](https://local-adjuster.com) |
+| **Local Adjuster** — Field companion app | Mobile (iOS) | [App Store](https://apps.apple.com/us/app/local-adjuster/id6793198183) |
 | **M&V Auto Body** — Site + Staff CRM | Web + CRM | [mivbodyshop.com](https://www.mivbodyshop.com) |
 | **Abbari Studio** — Indie game studio site | Marketing | [abbari-website.vercel.app](https://abbari-website.vercel.app) |
 | **Linko** — One-line path puzzle | Game (iOS) | [App Store](https://apps.apple.com/us/app/linko-one-line-path/id6774304399) |

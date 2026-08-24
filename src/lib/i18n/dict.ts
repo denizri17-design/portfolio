@@ -49,7 +49,7 @@ export const t = {
     kicker: "Selected work",
     title: "Things I've built recently.",
     subtitle:
-      "10 production / personal projects. Live URLs and tech are linked where public.",
+      "12 production / personal projects. Live URLs and tech are linked where public.",
     filterAll: "All",
     filterSaas: "SaaS",
     filterCrm: "CRM",

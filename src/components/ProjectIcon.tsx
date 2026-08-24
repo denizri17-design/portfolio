@@ -12,6 +12,8 @@ import {
   Gamepad2,
   Smartphone,
   Newspaper,
+  Dumbbell,
+  ClipboardList,
   type LucideIcon,
 } from "lucide-react";
 
@@ -27,6 +29,8 @@ const map: Record<string, LucideIcon> = {
   Gamepad2,
   Smartphone,
   Newspaper,
+  Dumbbell,
+  ClipboardList,
 };
 
 export function ProjectIcon({

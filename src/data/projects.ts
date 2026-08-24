@@ -85,6 +85,46 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: "ourfit",
+    name: "OurFit",
+    tagline: "AI form coach, workouts, and a plan built around you.",
+    description:
+      "AI fitness companion: film a set and get instant form feedback, then follow guided home and gym workouts. Expo app on iOS + Android, Next.js marketing site, and a FastAPI pose API — live at ourfit.co.",
+    bullets: [
+      "Monorepo: Expo app, Next.js marketing site, FastAPI pose API",
+      "AI form check — frame-by-frame analysis, rep count, coaching cues",
+      "75 exercises with real video, personalized weekly plans, nutrition log",
+      "App Store + web app (app.ourfit.co) sharing the same React Native codebase",
+    ],
+    category: ["saas", "mobile"],
+    year: "2026",
+    status: "live",
+    stack: [
+      "Expo SDK 54",
+      "React Native",
+      "Next.js",
+      "TypeScript",
+      "FastAPI",
+      "Python",
+      "Supabase",
+    ],
+    links: {
+      live: "https://ourfit.co",
+      appStore: "https://apps.apple.com/app/id6791250652",
+      googlePlay:
+        "https://play.google.com/store/apps/details?id=com.denizri17.formcheck",
+      repo: "https://github.com/denizri17-design/ourfit",
+    },
+    isPrivate: true,
+    images: ["/projects/ourfit-phone.webp"],
+    imageFit: "contain",
+    cover: {
+      gradient: "from-lime-500/30 via-emerald-500/15 to-sky-500/30",
+      accent: "ring-lime-400/40",
+      icon: "Dumbbell",
+    },
+  },
+  {
     slug: "skallix-crm",
     name: "Skallix CRM",
     tagline: "Multi-tenant CRM for roofing companies.",
@@ -203,7 +243,8 @@ export const projects: Project[] = [
     status: "live",
     stack: ["Laravel", "PHP", "Blade", "MySQL", "Tailwind"],
     links: {
-      live: "https://local-adjuster.com/admin/login",
+      live: "https://local-adjuster.com",
+      appStore: "https://apps.apple.com/us/app/local-adjuster/id6793198183",
       repo: "https://github.com/denizri17-design/public-adjuster",
     },
     isPrivate: true,
@@ -216,6 +257,45 @@ export const projects: Project[] = [
       gradient: "from-amber-500/30 via-orange-500/15 to-indigo-500/30",
       accent: "ring-amber-400/40",
       icon: "ShieldCheck",
+    },
+  },
+  {
+    slug: "local-adjuster-mobile",
+    name: "Local Adjuster",
+    tagline: "Field companion app for public adjusters and claim teams.",
+    description:
+      "Native iOS app for claim work on the go: review claims and clients, update status, capture notes and photos offline, track money lines, and sync back to local-adjuster.com. Communications stay on web; mobile focuses on the field.",
+    bullets: [
+      "Expo SDK 57 + React Native, JWT auth against the Local Adjuster API",
+      "Offline-first claims, clients, notes, tasks, and photo attachments",
+      "Face ID unlock, camera for claim documents, Maps and Email shortcuts",
+      "Ships on the App Store as Local Adjuster (com.localadjuster.app)",
+    ],
+    category: ["mobile"],
+    year: "2026",
+    status: "shipped",
+    stack: [
+      "Expo SDK 57",
+      "React Native",
+      "TypeScript",
+      "TanStack Query",
+      "expo-secure-store",
+    ],
+    links: {
+      live: "https://local-adjuster.com",
+      appStore: "https://apps.apple.com/us/app/local-adjuster/id6793198183",
+      repo: "https://github.com/denizri17-design/local-adjuster-mobile",
+    },
+    isPrivate: true,
+    images: [
+      "/projects/local-adjuster-overview.webp",
+      "/projects/local-adjuster-claims.webp",
+    ],
+    imageFit: "contain",
+    cover: {
+      gradient: "from-amber-600/30 via-stone-500/15 to-orange-500/30",
+      accent: "ring-amber-400/40",
+      icon: "ClipboardList",
     },
   },
   {
