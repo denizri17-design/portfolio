@@ -1,25 +1,17 @@
-import { AnimatedBackground } from "@/components/AnimatedBackground";
-import { Navbar } from "@/components/Navbar";
-import { Hero } from "@/components/Hero";
-import { About } from "@/components/About";
-import { Stack } from "@/components/Stack";
-import { Work } from "@/components/Work";
-import { Contact } from "@/components/Contact";
-import { Footer } from "@/components/Footer";
-import { ScrollProgress } from "@/components/ScrollProgress";
+import { AtmosphereStage } from "@/components/three/AtmosphereStage";
+import { SiteNav } from "@/components/SiteNav";
+import { Intro } from "@/components/Intro";
+import { CaseReel } from "@/components/CaseReel";
+import { Close } from "@/components/Close";
 
 export default function HomePage() {
   return (
-    <main className="relative min-h-screen">
-      <AnimatedBackground />
-      <ScrollProgress />
-      <Navbar />
-      <Hero />
-      <Work />
-      <About />
-      <Stack />
-      <Contact />
-      <Footer />
+    <main className="reel relative">
+      <AtmosphereStage />
+      <SiteNav />
+      <Intro />
+      <CaseReel />
+      <Close />
     </main>
   );
 }
