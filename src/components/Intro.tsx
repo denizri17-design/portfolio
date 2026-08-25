@@ -1,6 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+
+const proof = [
+  "13+ shipped products",
+  "Web + iOS + Android",
+  "AI / SaaS / CRM",
+  "Los Angeles",
+];
 
 export function Intro() {
   return (
@@ -15,7 +23,7 @@ export function Intro() {
           animate={{ opacity: 1, y: 0 }}
           className="label mb-6"
         >
-          Selected work / 2024-2026
+          Available for freelance & contract work
         </motion.p>
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
@@ -34,15 +42,36 @@ export function Intro() {
           Fullstack products that ship: AI SaaS, multi-tenant CRMs, native
           iOS/Android, and indie games.
         </motion.p>
-        <motion.a
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.32 }}
+          className="mt-8 flex flex-wrap items-center gap-3"
+        >
+          <a
+            href="#work"
+            className="inline-flex items-center rounded-full bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:bg-[#d7dde8]"
+          >
+            View my work
+          </a>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-1.5 rounded-full border border-white/20 px-5 py-2.5 text-sm font-medium text-white transition hover:border-white/45"
+          >
+            Have a project? Let's talk
+            <ArrowRight size={14} />
+          </a>
+        </motion.div>
+
+        <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          href="#work"
-          className="label mt-12 inline-block text-white/70"
+          transition={{ delay: 0.48 }}
+          className="label mt-10 max-w-2xl text-white/40"
         >
-          Scroll the reel
-        </motion.a>
+          {proof.join("  ·  ")}
+        </motion.p>
       </div>
     </section>
   );

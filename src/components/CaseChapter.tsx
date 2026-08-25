@@ -127,7 +127,7 @@ export function CaseChapter({
         )}
       >
         <p className="label">
-          {n} / {String(total).padStart(2, "0")}
+          {project.featured ? t.work.flagship : n} / {String(total).padStart(2, "0")}
         </p>
         <p className="label mt-4 text-white/40">
           {project.year} / {project.category.join(" / ")}
@@ -139,6 +139,11 @@ export function CaseChapter({
         <p className="mt-4 max-w-md text-sm leading-relaxed text-white/45">
           {project.description}
         </p>
+        {project.metrics?.length ? (
+          <p className="label mt-5 max-w-md text-white/40">
+            {project.metrics.join("  ·  ")}
+          </p>
+        ) : null}
         <div className="mt-6 flex flex-wrap gap-2">
           {project.stack.slice(0, 5).map((s) => (
             <span

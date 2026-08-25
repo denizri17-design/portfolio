@@ -25,14 +25,14 @@ export const t = {
   },
   about: {
     kicker: "About",
-    title: "Fullstack across the whole product surface.",
+    title: "One person. Idea to production.",
     body: [
-      "I'm Ri — a fullstack developer who ships end-to-end products: from the marketing site and the Stripe-billed SaaS dashboard, all the way down to the FastAPI service, the Postgres schema, the iOS build, the App Store listing and the Vercel deploy.",
-      "Most of what I work on is private client work — CRMs for roofing, public-adjusting and auto-body shops, a multi-language AI career copilot, and indie mobile games on iOS + Android built with React Native and Unity. I care a lot about animation, accessibility, performance budgets, and that the code is still nice to read in six months.",
+      "I take products from idea to production — frontend, backend, database, AI integrations, mobile apps, deployment, and App Store releases. You don't need five contractors to get a working product.",
+      "Most of my work is private client software: multi-tenant CRMs, AI SaaS, and native apps that are live in the stores. I stay through listing, billing, and the first real users — not just a Figma-to-HTML handoff.",
     ],
     highlights: [
       "Next.js 15 / 16 (App Router, RSC, Turbopack)",
-      "React Native + Expo SDK 54 — shipped to App Store & Play",
+      "React Native + Expo — shipped to App Store & Play",
       "Unity (C#) for 2D & 3D mobile games",
       "FastAPI + Python · Node.js · Laravel/PHP",
       "Postgres / Supabase · MySQL · Drizzle ORM",
@@ -50,6 +50,9 @@ export const t = {
     title: "A gallery of things I've shipped.",
     subtitle:
       "13 production pieces. Live URLs and tech are linked where public.",
+    flagship: "Flagship",
+    more: "More work",
+    moreKicker: "Also shipped",
     filterAll: "All",
     filterSaas: "SaaS",
     filterCrm: "CRM",
@@ -62,13 +65,20 @@ export const t = {
   },
   contact: {
     kicker: "Contact",
-    title: "Got a product to ship?",
+    title: "Have a project? Let's talk.",
     subtitle:
-      "I'm picking up a small number of new projects. Tell me what you're building — I'll reply within 24 hours.",
+      "I take a small number of freelance and contract builds. Tell me what you're shipping — I reply within 24 hours.",
     emailCta: "Email me",
     ghCta: "GitHub",
     copyEmail: "Copy email",
     copied: "Copied!",
+    start: "Start a Project",
+    formKind: "What are you building?",
+    formBudget: "Budget",
+    formTimeline: "Timeline",
+    formAbout: "Tell me about the project",
+    formSend: "Send",
+    formHint: "Opens your email with the brief filled in.",
   },
   footer: {
     built: "Built with Next.js, Three.js, React Three Fiber & Framer Motion.",

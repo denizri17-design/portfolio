@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     template: "%s · Ri Abba",
   },
   description:
-    "Fullstack developer building AI-powered SaaS, multi-tenant CRMs, native iOS/Android apps and indie games (React Native + Unity). Selected work from 2024–2026.",
+    "I take products from idea to production — AI SaaS, multi-tenant CRMs, and native iOS/Android apps. Available for freelance and contract work in Los Angeles.",
   metadataBase: new URL(siteUrl),
   openGraph: {
     title: "Ri Abba — Fullstack Developer",

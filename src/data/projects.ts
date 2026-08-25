@@ -30,6 +30,10 @@ export type Project = {
   images?: string[];
   /** Crop behaviour for the cover image. Phone screenshots need "contain". */
   imageFit?: "cover" | "contain";
+  /** Flagship cases shown full-screen in the reel. */
+  featured?: boolean;
+  /** Short commercial proof points under the description. */
+  metrics?: string[];
   /** Tailwind gradient + icon used as fallback / framing when image is absent. */
   cover: {
     gradient: string;
@@ -42,9 +46,11 @@ export const projects: Project[] = [
   {
     slug: "runkoda",
     name: "RunKoda",
-    tagline: "AI-powered cloud IDE — build with AI, code together, ship faster.",
+    featured: true,
+    tagline: "An AI cloud IDE so teams can build in the browser — no local setup.",
     description:
-      "A browser-based cloud development environment with an integrated AI agent, real-time collaboration, Docker workspaces, Git, and live preview. No local install — open runkoda.com and start coding.",
+      "Built a full cloud development environment with an AI agent that reads the codebase, writes patches, and ships previews. Docker workspaces, live collab, and Git are in the same tab — open runkoda.com and start coding.",
+    metrics: ["Live product", "AI agent", "Docker workspaces", "Realtime collab"],
     bullets: [
       "AI agent & chat that reads the whole codebase, generates and patches code",
       "Real-time collab: shared files, live cursors, no setup",
@@ -77,9 +83,11 @@ export const projects: Project[] = [
   {
     slug: "nextstep",
     name: "NextStep",
-    tagline: "AI Career Copilot — from job search to job offer.",
+    featured: true,
+    tagline: "An AI career copilot that takes people from job search to offer.",
     description:
-      "A full AI career platform: resume builder, multi-judge LLM feedback, job tracker, interview coach. Next.js 15 web + Expo mobile + FastAPI backend + Supabase + Stripe billing, localized in 5 languages.",
+      "Built the full product — resume builder, multi-judge LLM feedback, job tracker, and interview coach — so a candidate can go from a pasted job post to a ready package in under a minute. Web, iOS, billing, and five languages ship as one system.",
+    metrics: ["Web + iOS", "Stripe billing", "5 languages", "LLM pipeline"],
     bullets: [
       "Turborepo monorepo: Next.js 15 web, Expo SDK 52 mobile, FastAPI backend",
       "Multi-judge LLM pipeline with versioned prompts package",
@@ -120,9 +128,11 @@ export const projects: Project[] = [
   {
     slug: "ourfit",
     name: "OurFit",
-    tagline: "AI form coach, workouts, and a plan built around you.",
+    featured: true,
+    tagline: "An AI coach that checks form, builds the plan, and ships on both stores.",
     description:
-      "AI fitness companion: film a set and get instant form feedback, then follow guided home and gym workouts. Expo app on iOS + Android, Next.js marketing site, and a FastAPI pose API — live at ourfit.co.",
+      "Built the fitness product end to end: film a set, get form feedback, then follow a plan that adapts. One React Native codebase on iOS and Android, a FastAPI pose API, and a marketing site — live at ourfit.co.",
+    metrics: ["App Store + Play", "75 exercises", "AI form check", "iOS + Android"],
     bullets: [
       "Monorepo: Expo app, Next.js marketing site, FastAPI pose API",
       "AI form check — frame-by-frame analysis, rep count, coaching cues",
@@ -160,9 +170,11 @@ export const projects: Project[] = [
   {
     slug: "skallix-crm",
     name: "Skallix CRM",
-    tagline: "Multi-tenant CRM for roofing companies.",
+    featured: true,
+    tagline: "A multi-tenant CRM that runs the whole roofing company, not just the pipeline.",
     description:
-      "End-to-end business OS for roofing contractors: leads, clients, jobs, estimates & invoices, appointments, RBAC, multi-company tenancy, marketing analytics. Ships at skallix.com.",
+      "Built a multi-tenant CRM that centralizes leads, jobs, estimates, invoices, and field operations for roofing businesses. One platform, many companies, isolated data — plus a native iOS companion for the crew.",
+    metrics: ["Production", "444+ users", "4K+ jobs", "iOS companion"],
     bullets: [
       "Multi-department architecture (Marketing + CRM)",
       "Role-based access control (Owner / Manager / Sales / Office)",
@@ -201,9 +213,10 @@ export const projects: Project[] = [
   {
     slug: "skallix-doorknocking-mobile",
     name: "Skallix Doorknocking",
-    tagline: "Native iOS + Android field-rep app for the Skallix CRM.",
+    tagline: "A field app so door-to-door reps log every knock without a laptop.",
     description:
-      "Standalone mobile app for door-to-door sales reps. Native Mapbox SDK on both platforms, photo capture, JWT auth, runtime backend switching, ships to App Store + Google Play as com.skallix.doorknocking.",
+      "Built the companion app roofing reps actually carry: map pins, photo capture, and knock disposition, synced back to Skallix. Native Mapbox on iOS and Android — no more paper routes.",
+    metrics: ["iOS + Android", "Native Mapbox", "Photo capture", "Live CRM sync"],
     bullets: [
       "Expo SDK 54, React Native 0.81, React 19",
       "Native Mapbox via @rnmapbox/maps (iOS + Android)",
@@ -236,9 +249,10 @@ export const projects: Project[] = [
   {
     slug: "dlgplatform",
     name: "DLG Platform",
-    tagline: "Multi-department CRM for a service business at 11K+ jobs.",
+    tagline: "The operations CRM behind 11K+ real jobs, not a demo dataset.",
     description:
-      "Operations CRM running on real production data (11K+ jobs, multi-market). Clients, meetings, jobs board with status pipeline, call-center, sales, monitoring, SMS, reports. Role-based UI per department (Marketing / Sales / Call Center / Reports).",
+      "Built a multi-department CRM so marketing, sales, and the call center work from one jobs board. Status pipeline, SMS, reports, and role-based UI — running on production data across markets.",
+    metrics: ["11K+ jobs", "Multi-market", "Live production", "Dept. RBAC"],
     bullets: [
       "Jobs board with case-status pipeline + claim-status filters",
       "11K+ jobs in production, multi-market filtering",
@@ -265,9 +279,10 @@ export const projects: Project[] = [
   {
     slug: "public-adjuster",
     name: "Your Local Adjuster",
-    tagline: "SaaS platform for public insurance adjusters.",
+    tagline: "A claims SaaS so public adjusters run the file from intake to signature.",
     description:
-      "End-to-end SaaS for public adjusters with a cinematic Le Petit Prince-themed auth flow (light + dark mode), claims pipeline, client + carrier directory, document generation and signature flows. Laravel + Blade with a polished admin UI.",
+      "Built the web platform adjusters use every day: claims pipeline, client and carrier directories, document generation, and e-signature. The field team then picks up the same files in the iOS app.",
+    metrics: ["Live SaaS", "Claims pipeline", "E-signature", "iOS companion"],
     bullets: [
       "Themed sign-in with day / night mode toggle",
       "Claims lifecycle with statuses, assignees, deadlines",
@@ -298,9 +313,10 @@ export const projects: Project[] = [
   {
     slug: "local-adjuster-mobile",
     name: "Local Adjuster",
-    tagline: "Field companion app for public adjusters and claim teams.",
+    tagline: "The iOS field app adjusters open on the driveway, not back at the desk.",
     description:
-      "Native iOS app for claim work on the go: review claims and clients, update status, capture notes and photos offline, track money lines, and sync back to local-adjuster.com. Communications stay on web; mobile focuses on the field.",
+      "Built the native companion so claim work happens on site: review the file, update status, capture notes and photos offline, then sync back to the SaaS. Communications stay on web; the phone is for the field.",
+    metrics: ["App Store", "Offline-first", "Face ID", "Photo + notes"],
     bullets: [
       "Expo SDK 57 + React Native, JWT auth against the Local Adjuster API",
       "Offline-first claims, clients, notes, tasks, and photo attachments",
@@ -338,9 +354,10 @@ export const projects: Project[] = [
   {
     slug: "mv-auto-body-site",
     name: "M&V Auto Body",
-    tagline: "Animated multilingual website + internal staff CRM.",
+    tagline: "A shop site that also hides a staff CRM behind the marketing page.",
     description:
-      "Public marketing site for an auto-body shop in North Hollywood with a private staff CRM hidden behind a footer lock icon. 3 languages, dark theme with emerald accents, Recharts financial dashboard, Vercel Blob document storage.",
+      "Built the public site for a North Hollywood auto-body shop and a private staff CRM in the same product — claims, files, and a financial dashboard, in English, Spanish, and Russian.",
+    metrics: ["Live site", "EN / ES / RU", "Staff CRM", "Vercel + Postgres"],
     bullets: [
       "Next.js 16 (App Router) + React 19 + Tailwind v4",
       "i18n EN / ES / RU with first-visit modal + autodetect",
@@ -378,9 +395,10 @@ export const projects: Project[] = [
   {
     slug: "abbari-website",
     name: "Abbari Studio",
-    tagline: "Marketing site for an indie game studio.",
+    tagline: "A studio site that can carry App Store legal pages and a press kit.",
     description:
-      "Forest-themed marketing & legal site for Abbari Studio (Bricko, Linko, …). Animated hero with chipmunks, butterflies, sun rays and looping forest ambience. App-Store-ready privacy + terms pages, press kit, support flow.",
+      "Built the public face of Abbari Studio so Bricko and Linko have a home, plus privacy, terms, press kit, and support — the pages stores actually ask for.",
+    metrics: ["Live site", "App Store legal", "Press kit", "Motion + sound"],
     bullets: [
       "Next.js 16 + Tailwind v4 (CSS-first, no config)",
       "Framer Motion + GSAP animations",
@@ -414,9 +432,10 @@ export const projects: Project[] = [
   {
     slug: "linko",
     name: "Linko",
-    tagline: "One-line path puzzle game for iOS + Android.",
+    tagline: "A one-line puzzle game that shipped to the App Store with IAP and ads.",
     description:
-      "LinkedIn-Zip-style puzzle game: draw one continuous path through all numbered dots. Hamiltonian-path generator with Warnsdorff's heuristic, daily/weekly modes, IAP, AdMob, 7 locales, full ASO + screenshots pipeline.",
+      "Designed and shipped a path-puzzle game: generate solvable boards, run daily modes, take payments, and show ads. Seven languages and a full store-listing pipeline, not a prototype.",
+    metrics: ["App Store", "IAP + ads", "7 languages", "Daily modes"],
     bullets: [
       "Expo SDK 54 + expo-router (file-based routing)",
       "Pure-TS puzzle engine with seeded RNG",
@@ -451,9 +470,10 @@ export const projects: Project[] = [
   {
     slug: "bricko-game",
     name: "Bricko",
-    tagline: "Indie mobile game built in React Native + Unity tooling.",
+    tagline: "An indie game that made it through App Store review, not just a demo build.",
     description:
-      "Mobile game built with React Native + TypeScript, with Python tooling for asset generation and Unity for additional 2D/3D experiments. First title from Abbari Studio.",
+      "Shipped the first Abbari Studio title: a React Native game loop, Python tooling for assets, and the store pipeline. Built to be played, listed, and updated.",
+    metrics: ["App Store", "React Native", "Store pipeline", "Abbari Studio"],
     bullets: [
       "React Native + Expo, game loop in TypeScript",
       "Python asset/level generation scripts",
@@ -480,9 +500,10 @@ export const projects: Project[] = [
   {
     slug: "skallix_mobile",
     name: "Skallix Mobile",
-    tagline: "Companion mobile app for the Skallix CRM.",
+    tagline: "The Skallix CRM in a phone — funnel, jobs, and money in one drawer.",
     description:
-      "React Native + Expo companion client for the Skallix CRM. Market-aware navigation (San Francisco / multi-region), dashboard with conversion funnel KPIs, lead-source breakdown, sales-rep performance, and full clients / leads / jobs / appointments / estimates / documents / finance / reports modules.",
+      "Built the companion so owners and managers check conversion, leads, and jobs from the field. Market switcher, period dashboards, and the same modules as the desktop CRM.",
+    metrics: ["App Store", "KPI funnel", "Multi-market", "Full CRM modules"],
     bullets: [
       "Expo + React Native, JWT auth against the Skallix CRM API",
       "Market switcher (multi-region) in the side drawer",

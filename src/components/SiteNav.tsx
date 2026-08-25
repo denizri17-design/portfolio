@@ -9,15 +9,18 @@ export function SiteNav() {
         <a href="#top" className="label text-[var(--color-fg)]">
           Ri Abba
         </a>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-5 sm:gap-6">
           <a href="#work" className="label transition hover:text-[var(--color-fg)]">
             {t.nav.work}
           </a>
-          <a href="#about" className="label transition hover:text-[var(--color-fg)]">
+          <a href="#about" className="label hidden transition hover:text-[var(--color-fg)] sm:inline">
             {t.nav.about}
           </a>
-          <a href="#contact" className="label transition hover:text-[var(--color-fg)]">
-            {t.nav.contact}
+          <a
+            href="#contact"
+            className="rounded-full border border-white/20 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.22em] text-white transition hover:border-white/50 hover:bg-white hover:text-black"
+          >
+            {t.nav.hire}
           </a>
         </div>
       </nav>
