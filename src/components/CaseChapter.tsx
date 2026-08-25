@@ -120,13 +120,20 @@ export function CaseChapter({
         )}
       >
         {cover ? (
-          <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[28px] border border-white/10 bg-[#111216] shadow-[0_40px_90px_-40px_rgba(0,0,0,0.8)]">
+          <div
+            className={cn(
+              "relative w-full overflow-hidden rounded-[28px] border border-white/10 bg-[#111216] shadow-[0_40px_90px_-40px_rgba(0,0,0,0.8)]",
+              project.imageFit === "contain"
+                ? "mx-auto aspect-[9/19.5] max-w-[280px] sm:max-w-[320px]"
+                : "aspect-[16/9]",
+            )}
+          >
             <Image
               src={asset(cover)}
               alt={`${project.name} live product`}
               fill
               sizes="(min-width: 1024px) 58vw, 100vw"
-              className="object-cover object-top"
+              className="object-contain"
               priority={index < 2}
             />
           </div>

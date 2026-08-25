@@ -149,7 +149,7 @@ export const projects: Project[] = [
       repo: "https://github.com/denizri17-design/ourfit",
     },
     isPrivate: true,
-    images: ["/projects/ourfit-ui-wide.webp", "/projects/live-ourfit.webp"],
+    images: ["/projects/live-ourfit.webp", "/projects/ourfit-ui-wide.webp"],
     imageFit: "cover",
     cover: {
       gradient: "from-lime-500/30 via-emerald-500/15 to-sky-500/30",

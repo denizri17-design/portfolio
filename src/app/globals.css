@@ -78,7 +78,7 @@
 
   .screen-plate {
     width: min(100%, 920px);
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 9;
     border-radius: 18px;
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
