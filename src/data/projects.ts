@@ -66,7 +66,7 @@ export const projects: Project[] = [
       live: "https://runkoda.com",
     },
     isPrivate: true,
-    image: "/projects/runkoda.webp",
+    images: ["/projects/live-runkoda.webp", "/projects/runkoda.webp"],
     imageFit: "cover",
     cover: {
       gradient: "from-sky-500/30 via-indigo-500/15 to-cyan-500/30",
@@ -107,10 +107,8 @@ export const projects: Project[] = [
     },
     isPrivate: true,
     images: [
-      "/projects/nextstep-hero.webp",
-      "/projects/nextstep-interview.webp",
-      "/projects/nextstep-english.webp",
-      "/projects/nextstep-career.webp",
+      "/projects/live-nextstep.webp",
+      "/projects/nextstep-today.webp",
     ],
     imageFit: "cover",
     cover: {
@@ -151,8 +149,8 @@ export const projects: Project[] = [
       repo: "https://github.com/denizri17-design/ourfit",
     },
     isPrivate: true,
-    image: "/projects/ourfit-phone.webp",
-    imageFit: "contain",
+    images: ["/projects/ourfit-ui-wide.webp", "/projects/live-ourfit.webp"],
+    imageFit: "cover",
     cover: {
       gradient: "from-lime-500/30 via-emerald-500/15 to-sky-500/30",
       accent: "ring-lime-400/40",
@@ -189,7 +187,10 @@ export const projects: Project[] = [
       repo: "https://github.com/denizri17-design/skallix-crm",
     },
     isPrivate: true,
-    image: "/projects/skallix-crm.webp",
+    images: [
+      "/projects/live-skallix.webp",
+      "/projects/skallix-dashboard.webp",
+    ],
     imageFit: "cover",
     cover: {
       gradient: "from-emerald-500/30 via-sky-500/15 to-indigo-500/30",
@@ -284,8 +285,8 @@ export const projects: Project[] = [
     },
     isPrivate: true,
     images: [
+      "/projects/live-adjuster.webp",
       "/projects/public-adjuster.webp",
-      "/projects/public-adjuster-light.webp",
     ],
     imageFit: "cover",
     cover: {
@@ -323,10 +324,10 @@ export const projects: Project[] = [
     },
     isPrivate: true,
     images: [
+      "/projects/live-adjuster.webp",
       "/projects/local-adjuster-overview.webp",
-      "/projects/local-adjuster-claims.webp",
     ],
-    imageFit: "contain",
+    imageFit: "cover",
     cover: {
       gradient: "from-amber-600/30 via-stone-500/15 to-orange-500/30",
       accent: "ring-amber-400/40",
@@ -365,7 +366,7 @@ export const projects: Project[] = [
       repo: "https://github.com/denizri17-design/mv-auto-body-site",
     },
     isPrivate: true,
-    image: "/projects/mv-auto-body.webp",
+    images: ["/projects/mv-auto-body.webp", "/projects/mv-gallery.webp"],
     imageFit: "cover",
     cover: {
       gradient: "from-emerald-500/30 via-green-500/15 to-lime-500/30",
@@ -401,7 +402,7 @@ export const projects: Project[] = [
       repo: "https://github.com/denizri17-design/abbari-website",
     },
     isPrivate: true,
-    image: "/projects/abbari-website.webp",
+    images: ["/projects/live-abbari.webp", "/projects/abbari-showroom.webp"],
     imageFit: "cover",
     cover: {
       gradient: "from-lime-500/30 via-emerald-500/15 to-amber-500/30",
@@ -438,8 +439,8 @@ export const projects: Project[] = [
       repo: "https://github.com/denizri17-design/linko",
     },
     isPrivate: true,
-    image: "/projects/linko.webp",
-    imageFit: "contain",
+    images: ["/projects/linko-cinematic.webp", "/projects/linko-cleared.webp"],
+    imageFit: "cover",
     cover: {
       gradient: "from-pink-500/30 via-fuchsia-500/15 to-violet-500/30",
       accent: "ring-pink-400/40",
@@ -467,8 +468,8 @@ export const projects: Project[] = [
       repo: "https://github.com/denizri17-design/bricko-game",
     },
     isPrivate: true,
-    image: "/projects/bricko-game.webp",
-    imageFit: "contain",
+    images: ["/projects/bricko-cinematic.webp", "/projects/bricko-garden.webp"],
+    imageFit: "cover",
     cover: {
       gradient: "from-cyan-500/30 via-sky-500/15 to-blue-500/30",
       accent: "ring-cyan-400/40",
@@ -497,10 +498,10 @@ export const projects: Project[] = [
     },
     isPrivate: true,
     images: [
+      "/projects/skallix-dashboard.webp",
       "/projects/skallix-mobile-dashboard.webp",
-      "/projects/skallix-mobile-menu.webp",
     ],
-    imageFit: "contain",
+    imageFit: "cover",
     cover: {
       gradient: "from-indigo-500/30 via-blue-500/15 to-cyan-500/30",
       accent: "ring-indigo-400/40",

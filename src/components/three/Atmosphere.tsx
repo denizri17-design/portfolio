@@ -2,6 +2,7 @@
 
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
+import { Float } from "@react-three/drei";
 import { useReducedMotion } from "framer-motion";
 import * as THREE from "three";
 
@@ -74,27 +75,49 @@ function Field({ count }: { count: number }) {
   );
 }
 
-function Crystal() {
-  const ref = useRef<THREE.Mesh>(null);
+function Sculpture() {
+  const knot = useRef<THREE.Mesh>(null);
+  const ringA = useRef<THREE.Mesh>(null);
+  const ringB = useRef<THREE.Mesh>(null);
+
   useFrame((_, delta) => {
-    if (!ref.current) return;
-    ref.current.rotation.y += delta * 0.08;
-    ref.current.rotation.x += delta * 0.03;
+    if (knot.current) {
+      knot.current.rotation.y += delta * 0.22;
+      knot.current.rotation.x += delta * 0.06;
+    }
+    if (ringA.current) ringA.current.rotation.z += delta * 0.18;
+    if (ringB.current) ringB.current.rotation.x -= delta * 0.14;
   });
+
   return (
-    <mesh ref={ref} position={[2.4, 0.1, -1.2]}>
-      <icosahedronGeometry args={[1.6, 0]} />
-      <meshPhysicalMaterial
-        color="#cfd6e2"
-        roughness={0.08}
-        metalness={0.05}
-        transmission={0.72}
-        thickness={1.4}
-        ior={1.45}
-        transparent
-        opacity={0.9}
-      />
-    </mesh>
+    <Float speed={1.1} rotationIntensity={0.12} floatIntensity={0.28}>
+      <group position={[2.15, 0.1, -0.2]}>
+        <mesh ref={knot}>
+          <torusKnotGeometry args={[0.82, 0.24, 220, 36]} />
+          <meshPhysicalMaterial
+            color="#f3f6fb"
+            roughness={0.04}
+            metalness={0.12}
+            transmission={0.86}
+            thickness={1.35}
+            ior={1.48}
+            iridescence={1}
+            iridescenceIOR={1.25}
+            iridescenceThicknessRange={[80, 420]}
+            clearcoat={1}
+            clearcoatRoughness={0.08}
+          />
+        </mesh>
+        <mesh ref={ringA} rotation={[Math.PI / 2.2, 0.2, 0]}>
+          <torusGeometry args={[1.55, 0.01, 12, 96]} />
+          <meshBasicMaterial color="#e8eef8" transparent opacity={0.55} />
+        </mesh>
+        <mesh ref={ringB} rotation={[0.4, Math.PI / 2.4, 0.3]}>
+          <torusGeometry args={[1.28, 0.008, 12, 96]} />
+          <meshBasicMaterial color="#c5d0e4" transparent opacity={0.4} />
+        </mesh>
+      </group>
+    </Float>
   );
 }
 
@@ -120,10 +143,11 @@ export function Atmosphere() {
       camera={{ position: [0, 0, 7], fov: 42 }}
     >
       <Suspense fallback={null}>
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[3, 4, 5]} intensity={1.2} color="#e8eef8" />
+        <ambientLight intensity={0.55} />
+        <directionalLight position={[4, 5, 6]} intensity={1.6} color="#f4f7ff" />
+        <pointLight position={[-2, 1, 3]} intensity={8} color="#9eb0d4" distance={12} />
         <Field count={mobile ? 900 : 2800} />
-        {!mobile && <Crystal />}
+        {!mobile && <Sculpture />}
       </Suspense>
     </Canvas>
   );

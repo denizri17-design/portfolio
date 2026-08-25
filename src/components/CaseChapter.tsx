@@ -23,14 +23,13 @@ export function CaseChapter({
   total: number;
 }) {
   const cover = coverOf(project);
-  const phone = project.imageFit === "contain";
   const flip = index % 2 === 1;
   const n = String(index + 1).padStart(2, "0");
 
   return (
     <section
       id={index === 0 ? "work" : project.slug}
-      className="chapter relative grid items-center gap-10 px-5 py-24 sm:px-10 lg:grid-cols-12 lg:gap-8 lg:py-0"
+      className="chapter relative grid items-center gap-8 px-5 py-24 sm:px-10 lg:grid-cols-12 lg:gap-10 lg:py-0"
     >
       <motion.div
         initial={{ opacity: 0, y: 24 }}
@@ -111,23 +110,23 @@ export function CaseChapter({
       </motion.div>
 
       <motion.div
-        initial={{ opacity: 0, scale: 0.96 }}
-        whileInView={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.8, delay: 0.05 }}
+        transition={{ duration: 0.75 }}
         className={cn(
-          "relative flex min-h-[52vh] items-center justify-center lg:col-span-7 lg:min-h-[100svh]",
+          "relative lg:col-span-7",
           flip ? "lg:order-1 lg:col-start-1" : "lg:col-start-6",
         )}
       >
         {cover ? (
-          <div className={cn("plate", phone ? "phone-plate" : "screen-plate")}>
+          <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[28px] border border-white/10 bg-[#111216] shadow-[0_40px_90px_-40px_rgba(0,0,0,0.8)]">
             <Image
               src={asset(cover)}
-              alt={project.name}
+              alt={`${project.name} live product`}
               fill
-              sizes={phone ? "380px" : "(min-width: 1024px) 60vw, 100vw"}
-              className={cn("object-cover", !phone && "object-top")}
+              sizes="(min-width: 1024px) 58vw, 100vw"
+              className="object-cover object-top"
               priority={index < 2}
             />
           </div>
