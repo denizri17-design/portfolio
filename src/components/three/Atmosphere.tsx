@@ -2,9 +2,12 @@
 
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float } from "@react-three/drei";
+import { Center, Environment, Float, useAnimations, useGLTF } from "@react-three/drei";
 import { useReducedMotion } from "framer-motion";
 import * as THREE from "three";
+import { asset } from "@/lib/asset";
+
+const ASTRONAUT = asset("/models/Astronaut.glb");
 
 function Field({ count }: { count: number }) {
   const material = useRef<THREE.ShaderMaterial>(null);
@@ -76,50 +79,56 @@ function Field({ count }: { count: number }) {
 }
 
 function Sculpture() {
-  const knot = useRef<THREE.Mesh>(null);
+  const group = useRef<THREE.Group>(null);
   const ringA = useRef<THREE.Mesh>(null);
   const ringB = useRef<THREE.Mesh>(null);
+  const { scene, animations } = useGLTF(ASTRONAUT);
+  const { actions } = useAnimations(animations, group);
+
+  useEffect(() => {
+    const box = new THREE.Box3().setFromObject(scene);
+    const size = new THREE.Vector3();
+    box.getSize(size);
+    const max = Math.max(size.x, size.y, size.z) || 1;
+    scene.scale.setScalar(2.55 / max);
+  }, [scene]);
+
+  useEffect(() => {
+    const idle = actions["CharacterArmature|Idle"];
+    idle?.reset().fadeIn(0.35).play();
+    return () => {
+      idle?.fadeOut(0.2);
+    };
+  }, [actions]);
 
   useFrame((_, delta) => {
-    if (knot.current) {
-      knot.current.rotation.y += delta * 0.22;
-      knot.current.rotation.x += delta * 0.06;
-    }
-    if (ringA.current) ringA.current.rotation.z += delta * 0.18;
-    if (ringB.current) ringB.current.rotation.x -= delta * 0.14;
+    if (group.current) group.current.rotation.y += delta * 0.16;
+    if (ringA.current) ringA.current.rotation.z += delta * 0.12;
+    if (ringB.current) ringB.current.rotation.x -= delta * 0.09;
   });
 
   return (
-    <Float speed={1.1} rotationIntensity={0.12} floatIntensity={0.28}>
-      <group position={[2.15, 0.1, -0.2]}>
-        <mesh ref={knot}>
-          <torusKnotGeometry args={[0.82, 0.24, 220, 36]} />
-          <meshPhysicalMaterial
-            color="#f3f6fb"
-            roughness={0.04}
-            metalness={0.12}
-            transmission={0.86}
-            thickness={1.35}
-            ior={1.48}
-            iridescence={1}
-            iridescenceIOR={1.25}
-            iridescenceThicknessRange={[80, 420]}
-            clearcoat={1}
-            clearcoatRoughness={0.08}
-          />
+    <Float speed={1} rotationIntensity={0.06} floatIntensity={0.2}>
+      <group position={[2.35, 0.05, -0.1]}>
+        <group ref={group}>
+          <Center>
+            <primitive object={scene} />
+          </Center>
+        </group>
+        <mesh ref={ringA} rotation={[Math.PI / 2.15, 0.18, 0]}>
+          <torusGeometry args={[1.62, 0.008, 12, 96]} />
+          <meshBasicMaterial color="#e8eef8" transparent opacity={0.42} />
         </mesh>
-        <mesh ref={ringA} rotation={[Math.PI / 2.2, 0.2, 0]}>
-          <torusGeometry args={[1.55, 0.01, 12, 96]} />
-          <meshBasicMaterial color="#e8eef8" transparent opacity={0.55} />
-        </mesh>
-        <mesh ref={ringB} rotation={[0.4, Math.PI / 2.4, 0.3]}>
-          <torusGeometry args={[1.28, 0.008, 12, 96]} />
-          <meshBasicMaterial color="#c5d0e4" transparent opacity={0.4} />
+        <mesh ref={ringB} rotation={[0.55, Math.PI / 2.3, 0.2]}>
+          <torusGeometry args={[1.28, 0.006, 12, 96]} />
+          <meshBasicMaterial color="#c5d0e4" transparent opacity={0.28} />
         </mesh>
       </group>
     </Float>
   );
 }
+
+useGLTF.preload(ASTRONAUT);
 
 export function Atmosphere() {
   const reduce = useReducedMotion();
@@ -142,13 +151,19 @@ export function Atmosphere() {
       dpr={[1, mobile ? 1.2 : 1.5]}
       camera={{ position: [0, 0, 7], fov: 42 }}
     >
+      <ambientLight intensity={0.85} />
+      <directionalLight position={[4, 5, 6]} intensity={2.2} color="#f4f7ff" />
+      <pointLight position={[-2, 1.4, 3]} intensity={12} color="#9eb0d4" distance={14} />
+      <spotLight position={[2.4, 4.2, 3]} intensity={18} color="#ffffff" angle={0.45} penumbra={0.6} />
       <Suspense fallback={null}>
-        <ambientLight intensity={0.55} />
-        <directionalLight position={[4, 5, 6]} intensity={1.6} color="#f4f7ff" />
-        <pointLight position={[-2, 1, 3]} intensity={8} color="#9eb0d4" distance={12} />
-        <Field count={mobile ? 900 : 2800} />
-        {!mobile && <Sculpture />}
+        <Environment preset="city" environmentIntensity={0.35} />
       </Suspense>
+      <Field count={mobile ? 900 : 2800} />
+      {!mobile && (
+        <Suspense fallback={null}>
+          <Sculpture />
+        </Suspense>
+      )}
     </Canvas>
   );
 }
