@@ -13,6 +13,91 @@ function coverOf(project: Project) {
   return project.image;
 }
 
+function phoneShots(project: Project) {
+  if (project.images?.length) return project.images.slice(0, 3);
+  return project.image ? [project.image] : [];
+}
+
+function PhoneBezel({
+  src,
+  alt,
+  className,
+  priority = false,
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  priority?: boolean;
+}) {
+  return (
+    <div
+      className={cn(
+        "relative aspect-[9/19.5] overflow-hidden rounded-[2rem] border-[5px] border-[#1c1e24] bg-black shadow-[0_28px_50px_-18px_rgba(0,0,0,0.85)]",
+        className,
+      )}
+    >
+      <Image
+        src={asset(src)}
+        alt={alt}
+        fill
+        sizes="280px"
+        className="object-cover"
+        priority={priority}
+      />
+    </div>
+  );
+}
+
+function PhoneStage({
+  images,
+  alt,
+  priority = false,
+}: {
+  images: string[];
+  alt: string;
+  priority?: boolean;
+}) {
+  if (images.length === 0) return null;
+
+  if (images.length === 1) {
+    return (
+      <div className="flex justify-center">
+        <PhoneBezel
+          src={images[0]}
+          alt={alt}
+          className="h-[min(68svh,580px)] w-auto"
+          priority={priority}
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div className="relative mx-auto h-[min(72svh,640px)] w-full max-w-[760px]">
+      {images[1] ? (
+        <PhoneBezel
+          src={images[1]}
+          alt={`${alt} screen 2`}
+          className="absolute left-[2%] top-[14%] z-10 h-[72%] w-auto -rotate-[9deg]"
+        />
+      ) : null}
+      {images[2] ? (
+        <PhoneBezel
+          src={images[2]}
+          alt={`${alt} screen 3`}
+          className="absolute right-[2%] top-[14%] z-10 h-[72%] w-auto rotate-[9deg]"
+        />
+      ) : null}
+      <PhoneBezel
+        src={images[0]}
+        alt={alt}
+        className="absolute left-1/2 top-[3%] z-20 h-[94%] w-auto -translate-x-1/2"
+        priority={priority}
+      />
+    </div>
+  );
+}
+
 export function CaseChapter({
   project,
   index,
@@ -119,15 +204,14 @@ export function CaseChapter({
           flip ? "lg:order-1 lg:col-start-1" : "lg:col-start-6",
         )}
       >
-        {cover ? (
-          <div
-            className={cn(
-              "relative w-full overflow-hidden rounded-[28px] border border-white/10 bg-[#111216] shadow-[0_40px_90px_-40px_rgba(0,0,0,0.8)]",
-              project.imageFit === "contain"
-                ? "mx-auto aspect-[9/19.5] max-w-[280px] sm:max-w-[320px]"
-                : "aspect-[16/9]",
-            )}
-          >
+        {project.imageFit === "contain" ? (
+          <PhoneStage
+            images={phoneShots(project)}
+            alt={`${project.name} app`}
+            priority={index < 2}
+          />
+        ) : cover ? (
+          <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[28px] border border-white/10 bg-[#111216] shadow-[0_40px_90px_-40px_rgba(0,0,0,0.8)]">
             <Image
               src={asset(cover)}
               alt={`${project.name} live product`}

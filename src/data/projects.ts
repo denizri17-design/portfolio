@@ -324,10 +324,11 @@ export const projects: Project[] = [
     },
     isPrivate: true,
     images: [
-      "/projects/live-adjuster.webp",
       "/projects/local-adjuster-overview.webp",
+      "/projects/local-adjuster-claims.webp",
+      "/projects/local-adjuster-clients.webp",
     ],
-    imageFit: "cover",
+    imageFit: "contain",
     cover: {
       gradient: "from-amber-600/30 via-stone-500/15 to-orange-500/30",
       accent: "ring-amber-400/40",
