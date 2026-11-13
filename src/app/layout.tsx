@@ -25,23 +25,23 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Ri Abba — Fullstack Developer",
-    template: "%s · Ri Abba",
+    default: "Risola Madaminova — Fullstack Developer",
+    template: "%s · Risola Madaminova",
   },
   description:
     "I take products from idea to production — AI SaaS, multi-tenant CRMs, and native iOS/Android apps. Available for freelance and contract work in Los Angeles.",
   metadataBase: new URL(siteUrl),
   openGraph: {
-    title: "Ri Abba — Fullstack Developer",
+    title: "Risola Madaminova — Fullstack Developer",
     description:
       "AI SaaS · Multi-tenant CRMs · Native iOS/Android · Indie games (React Native + Unity).",
     url: siteUrl,
-    siteName: "Ri Abba",
+    siteName: "Risola Madaminova",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ri Abba — Fullstack Developer",
+    title: "Risola Madaminova — Fullstack Developer",
     description:
       "AI SaaS · Multi-tenant CRMs · Native iOS/Android · Indie games (React Native + Unity).",
   },

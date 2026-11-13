@@ -55,7 +55,7 @@ export function Navbar() {
               </span>
             </span>
             <span className="hidden font-display text-base font-semibold tracking-tight text-white/90 transition group-hover:text-white sm:inline">
-              Ri Abba
+              Risola Madaminova
             </span>
           </a>
 

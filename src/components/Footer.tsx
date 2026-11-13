@@ -18,7 +18,7 @@ export function Footer() {
           </span>
           <div>
             <div className="font-display text-sm font-semibold tracking-tight text-white">
-              Ri Abba
+              Risola Madaminova
             </div>
             <div className="text-xs text-white/45">
               © {year} · {t.footer.built}

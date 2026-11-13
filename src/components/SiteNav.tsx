@@ -7,7 +7,7 @@ export function SiteNav() {
     <header className="fixed inset-x-0 top-0 z-50">
       <nav className="flex items-center justify-between px-5 py-5 sm:px-8">
         <a href="#top" className="label text-[var(--color-fg)]">
-          Ri Abba
+          Risola Madaminova
         </a>
         <div className="flex items-center gap-5 sm:gap-6">
           <a href="#work" className="label transition hover:text-[var(--color-fg)]">

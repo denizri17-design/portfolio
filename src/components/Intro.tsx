@@ -31,7 +31,7 @@ export function Intro() {
           transition={{ delay: 0.08, duration: 0.7 }}
           className="font-display text-[clamp(3.4rem,12vw,9.5rem)] font-semibold leading-[0.88] tracking-[-0.05em]"
         >
-          Ri Abba
+          Risola Madaminova
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 16 }}

@@ -1,10 +1,10 @@
-# Ri Abba — Portfolio
+# Risola Madaminova — Portfolio
 
 [![Deploy to GitHub Pages](https://github.com/denizri17-design/portfolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/denizri17-design/portfolio/actions/workflows/deploy.yml)
 
 🌐 **Live:** [denizri17-design.github.io/portfolio/](https://denizri17-design.github.io/portfolio/)
 
-Personal portfolio for **Ri Abba**, fullstack developer. Showcases 12 production
+Personal portfolio for **Risola Madaminova**, fullstack developer. Showcases 12 production
 products: AI SaaS, multi-tenant CRMs, native iOS/Android apps, marketing sites,
 and indie games built with React Native + Unity.
 
