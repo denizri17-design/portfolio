@@ -20,7 +20,7 @@ and indie games built with React Native + Unity.
 | **Your Local Adjuster** — Public adjuster SaaS | SaaS / CRM | [local-adjuster.com](https://local-adjuster.com) |
 | **Local Adjuster** — Field companion app | Mobile (iOS) | [App Store](https://apps.apple.com/us/app/local-adjuster/id6793198183) |
 | **M&V Auto Body** — Site + Staff CRM | Web + CRM | [mivbodyshop.com](https://www.mivbodyshop.com) |
-| **Abbari Studio** — Indie game studio site | Marketing | [abbari-website.vercel.app](https://abbari-website.vercel.app) |
+| **Abbari Studio** — Indie game studio site | Marketing | [abbaristudio.com](https://www.abbaristudio.com) |
 | **Linko** — One-line path puzzle | Game (iOS) | [App Store](https://apps.apple.com/us/app/linko-one-line-path/id6774304399) |
 | **Bricko** — Indie mobile game | Game (iOS) | [App Store](https://apps.apple.com/app/id6768135258) |
 | **Skallix Mobile** — Companion app | Mobile | [Repo](https://github.com/denizri17-design/skallix_mobile) |
